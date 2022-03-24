@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 import Register from "./Register";
+import Logout from "./Logout";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {Form, FormGroup, FormText, FormLabel
   , FormControl, Button,
@@ -13,17 +15,16 @@ export default function App() {
     <Container>
     <Navbar.Brand href="#home">Navbar</Navbar.Brand>
     <Nav className="me-auto">
-      <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="#features">Features</Nav.Link>
-      <Nav.Link href="#pricing">Pricing</Nav.Link>
+      <Nav.Link href="/">Home</Nav.Link>
+      <Nav.Link href="/register">Register</Nav.Link>
+      <Nav.Link href="/logout">Logout</Nav.Link>
     </Nav>
     </Container>
   </Navbar>
-
-
       <Routes>
         <Route exact path="/" element={<Layout />}></Route>
           <Route path="register" element={<Register />} />
+          <Route path="logout" element={<Logout />} />
           <Route path="*" element={<NoMatch />} />
       </Routes>
     </div>
@@ -33,12 +34,9 @@ export default function App() {
 function Layout() {
   return (
     <div>
-      {/* A "layout route" is a good place to put markup you want to
-          share across all the pages on your site, like navigation. */}
       <nav>
         <ul>
           <li>
-            <Link to="/register">Register</Link>
             <Form>
   <Form.Group className="mb-3" controlId="formBasicEmail">
     <Form.Label>Username</Form.Label>
@@ -49,12 +47,10 @@ function Layout() {
     <Form.Label>Password</Form.Label>
     <Form.Control type="password" placeholder="Password" />
   </Form.Group>
-  <Form.Group className="mb-3" controlId="formBasicCheckbox">
-    <Form.Check type="checkbox" label="Check me out" />
-  </Form.Group>
   <Button variant="primary" type="submit">
-    Submit
+    Login
   </Button>
+  <button type="button" class="btn btn-primary">Primary</button>
 </Form>
 
           </li>
