@@ -5,17 +5,11 @@ import {Form, FormGroup, FormText, FormLabel
 import React, { useState } from 'react';
 
 function Register() {
-  const [count, setCount] = useState(0);
   return (
     <div>
-    <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>
-        Click me
-      </button>
-    </div>   <Form>
+       <Form>
   <Form.Group className="mb-3" controlId="formBasicEmail">
-    <Form.Label>Username</Form.Label>
+    <Form.Label>Name</Form.Label>
     <Form.Control type="text" placeholder="Enter Username" />
   </Form.Group>
  
