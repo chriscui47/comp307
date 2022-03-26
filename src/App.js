@@ -3,6 +3,7 @@ import { Routes, Route, Outlet, Link } from "react-router-dom";
 import Register from "./Register";
 import Logout from "./Logout";
 import Login from "./Login";
+import Dashboard from "./Dashboard";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useRef } from 'react';
 
@@ -16,9 +17,10 @@ export default function App() {
         <Navbar bg="primary" variant="dark">
     <Container>
     <Nav className="me-auto">
-      <Nav.Link href="/">Home</Nav.Link>
+      <Nav.Link href="/">Login</Nav.Link>
       <Nav.Link href="/register">Register</Nav.Link>
       <Nav.Link href="/logout">Logout</Nav.Link>
+      <Nav.Link href="/dashboard">Dashboard</Nav.Link>
     </Nav>
     </Container>
   </Navbar>
@@ -26,6 +28,7 @@ export default function App() {
         <Route exact path="/" element={<Login />}></Route>
           <Route path="register" element={<Register />} />
           <Route path="logout" element={<Logout />} />
+          <Route path="dashboard" element = {<Dashboard />} />
           <Route path="*" element={<NoMatch />} />
       </Routes>
     </div>
