@@ -8,5 +8,6 @@ function Logout() {
     </div>
   );
 }
-
+// At end, export. 
+// Something that can be rendered in browser (html)
 export default Logout;
