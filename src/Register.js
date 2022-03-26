@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import styles from './Register.module.css';
 import {Form, FormGroup, FormText, FormLabel
 , FormControl, Button} from 'react-bootstrap';
 import React, { useState } from 'react';
