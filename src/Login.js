@@ -1,11 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-import styles from './Register.module.css';
 import {Form, FormGroup, FormText, FormLabel
 , FormControl, Button} from 'react-bootstrap';
 import React, { useState } from 'react';
 import { useRef } from 'react';
-function Register() {
+
+function Login() {
 
   const userNameRef= useRef();
   const passWordRef = useRef();
@@ -39,10 +39,10 @@ function Register() {
         Password <br />
         <input type="text" required id='password' ref={passWordRef}></input>
         <br />  <br />
-        <button>Register</button>
+        <button>Login</button>
       </form>
     </div>
   );
 }
 
-export default Register;
+export default Login;

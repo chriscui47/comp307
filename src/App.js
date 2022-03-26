@@ -2,7 +2,9 @@ import * as React from "react";
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 import Register from "./Register";
 import Logout from "./Logout";
+import Login from "./Login";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useRef } from 'react';
 
 import {Form, FormGroup, FormText, FormLabel
   , FormControl, Button,
@@ -13,7 +15,6 @@ export default function App() {
     <div>
         <Navbar bg="primary" variant="dark">
     <Container>
-    <Navbar.Brand href="#home">Navbar</Navbar.Brand>
     <Nav className="me-auto">
       <Nav.Link href="/">Home</Nav.Link>
       <Nav.Link href="/register">Register</Nav.Link>
@@ -22,7 +23,7 @@ export default function App() {
     </Container>
   </Navbar>
       <Routes>
-        <Route exact path="/" element={<Layout />}></Route>
+        <Route exact path="/" element={<Login />}></Route>
           <Route path="register" element={<Register />} />
           <Route path="logout" element={<Logout />} />
           <Route path="*" element={<NoMatch />} />
@@ -31,13 +32,6 @@ export default function App() {
   );
 }
 
-function Layout() {
-  return (
-    <div>
-      
-    </div>
-  );
-}
 
 function NoMatch() {
   return (
