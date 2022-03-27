@@ -41,7 +41,7 @@ function Register() {
        'Content-Type': 'application/json' // Denote we are sending JSON data.
      }
 
-   }); // JS, allows us to send HTTP requests.
+   }); 
   }
 
   return (

@@ -21,7 +21,6 @@ function Login() {
       password: enteredPassWord,
       
     }
-    console.log(userData);
     // Send to server to store in DB. (HTTP Request)
    fetch('https://ta-management-47.herokuapp.com/api/user/login', {
      // Configure
@@ -32,6 +31,7 @@ function Login() {
      }
 
    }); 
+   // Conditionally redirect to different page here. 
   }
 
   return (
