@@ -13,8 +13,10 @@ function Course(props) {
             <h3>Semester: {props.term} </h3> 
         </div>
         <button>Select Course</button>
+    
         
     </li>);
+    // Upon selecting course go somewhere.
 }
 
 export default Course;
