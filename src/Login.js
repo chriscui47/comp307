@@ -19,9 +19,11 @@ function Login() {
     const userData = {
       username: enteredUserName,
       password: enteredPassWord,
+      
     }
+    console.log(userData);
     // Send to server to store in DB. (HTTP Request)
-   fetch('URL-TO-SEND-REQUEST', {
+   fetch('https://ta-management-47.herokuapp.com/api/user/login', {
      // Configure
      method: 'POST',
      body: JSON.stringify(userData),
@@ -29,7 +31,7 @@ function Login() {
        'Content-Type': 'application/json' // Denote we are sending JSON data.
      }
 
-   }); // JS, allows us to send HTTP requests.
+   }); 
   }
 
   return (
@@ -39,6 +41,7 @@ function Login() {
         <input type="text" required id='username' ref={userNameRef}></input> <br />
         Password <br />
         <input type="text" required id='password' ref={passWordRef}></input>
+        <br />  <br />
         <br />  <br />
         <button>Login</button>
       </form>

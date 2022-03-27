@@ -34,11 +34,28 @@ function Register() {
   return (
     <div className={styles.register}>
       <form onSubmit={submitHandler}>
+        First Name <br />
+        <input type="text" required id='username' ref={userNameRef}></input> <br />
+        Last Name <br />
+        <input type="text" required id='username' ref={userNameRef}></input> <br />
+        Student ID <br />
+        <input type="text" required id='username' ref={userNameRef}></input> <br />
+        First Name <br />
+        <input type="text" required id='username' ref={userNameRef}></input> <br />
         Username <br />
         <input type="text" required id='username' ref={userNameRef}></input> <br />
         Password <br />
         <input type="text" required id='password' ref={passWordRef}></input>
-        <br />  <br />
+        <br />
+        User Type <br />
+        <select name = "book">
+        <option value="ta">TA</option>
+        <option value="student">Student</option>
+        <option value="sysop">System Operator</option>
+        <option value="prof">Professor</option>
+    </select>
+      < br />
+      <br />
         <button>Register</button>
       </form>
     </div>
