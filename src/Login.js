@@ -42,7 +42,7 @@ function Login() {
         Password <br />
         <input type="text" required id='password' ref={passWordRef}></input>
         <br />  <br />
-        <br />  <br />
+
         <button>Login</button>
       </form>
     </div>

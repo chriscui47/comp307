@@ -9,16 +9,29 @@ function Register() {
 
   const userNameRef= useRef();
   const passWordRef = useRef();
+  const firstNameRef = useRef();
+  const lastNameRef= useRef();
+  const studentIDRef = useRef();
+  const userTypeRef = useRef();
   function submitHandler(event) {
     event.preventDefault();
 
     const enteredUserName = userNameRef.current.value;
     const enteredPassWord = passWordRef.current.value;
+    const enteredfName = firstNameRef.current.value;
+    const enteredlName = lastNameRef.current.value;
+    const enteredStudentID = studentIDRef.current.value;
+    const enteredUserType = userTypeRef.current.value;
 
     const userData = {
+      firstname: enteredfName,
+      lastname: enteredlName,
       username: enteredUserName,
       password: enteredPassWord,
+      ID: enteredStudentID,
+      type: enteredUserType,
     }
+    console.log(userData);
     // Send to server to store in DB. (HTTP Request)
    fetch('URL-TO-SEND-REQUEST', {
      // Configure
@@ -35,20 +48,18 @@ function Register() {
     <div className={styles.register}>
       <form onSubmit={submitHandler}>
         First Name <br />
-        <input type="text" required id='username' ref={userNameRef}></input> <br />
+        <input type="text" required id='fname' ref={firstNameRef}></input> <br />
         Last Name <br />
-        <input type="text" required id='username' ref={userNameRef}></input> <br />
+        <input type="text" required id='lname' ref={lastNameRef}></input> <br />
         Student ID <br />
-        <input type="text" required id='username' ref={userNameRef}></input> <br />
-        First Name <br />
-        <input type="text" required id='username' ref={userNameRef}></input> <br />
+        <input type="text" required id='id' ref={studentIDRef}></input> <br />
         Username <br />
         <input type="text" required id='username' ref={userNameRef}></input> <br />
         Password <br />
         <input type="text" required id='password' ref={passWordRef}></input>
         <br />
         User Type <br />
-        <select name = "book">
+        <select required id='usertype' ref={userTypeRef}>
         <option value="ta">TA</option>
         <option value="student">Student</option>
         <option value="sysop">System Operator</option>
