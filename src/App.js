@@ -20,7 +20,7 @@ export default function App() {
       <Nav.Link href="/">Login</Nav.Link>
       <Nav.Link href="/register">Register</Nav.Link>
       <Nav.Link href="/logout">Logout</Nav.Link>
-      <Nav.Link href="/dashboard">Dashboard</Nav.Link>
+      <Nav.Link href="/dashboard">TA Management</Nav.Link>
     </Nav>
     </Container>
   </Navbar>

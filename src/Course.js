@@ -1,5 +1,8 @@
+import styles from './Course.module.css';
+
 function Course(props) {
-    return <li>
+    return (
+    <li className={styles.course}>
         <div>
             <h3>Course Code: {props.code} </h3>
         </div>
@@ -11,7 +14,7 @@ function Course(props) {
         </div>
         <button>Select Course</button>
         
-    </li>
+    </li>);
 }
-// On select course, redirect to given page using course that was selected. 
+
 export default Course;

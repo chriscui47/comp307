@@ -1,0 +1,10 @@
+.dashboard {
+    padding: 10px;
+}
+.title {
+    margin-left: 30px;
+}
+
+.courselist {
+    list-style-type: none;
+}

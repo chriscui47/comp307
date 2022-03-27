@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import styles from './Register.module.css';
 import {Form, FormGroup, FormText, FormLabel
 , FormControl, Button} from 'react-bootstrap';
 import React, { useState } from 'react';
@@ -32,7 +33,7 @@ function Login() {
   }
 
   return (
-    <div>
+    <div className={styles.register}>
       <form onSubmit={submitHandler}>
         Username <br />
         <input type="text" required id='username' ref={userNameRef}></input> <br />

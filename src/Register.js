@@ -32,7 +32,7 @@ function Register() {
   }
 
   return (
-    <div>
+    <div className={styles.register}>
       <form onSubmit={submitHandler}>
         Username <br />
         <input type="text" required id='username' ref={userNameRef}></input> <br />
