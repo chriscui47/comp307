@@ -29,22 +29,8 @@ function Login() {
             username: enteredUserName,
             password: enteredPassWord,
             }        
-            const xhr = new XMLHttpRequest();
-
-            function foo () {
-              if (xhr.readyState === 4) {
-                errorCode=xhr.status;
-              }};
-              xhr.addEventListener("readystatechange", foo);
-              xhr.open("POST", 'https://ta-management-47.herokuapp.com/api/user/login', true);
-              xhr.send(userData);
             
-            console.log(errorCode);
-          
-              /** 
-               * 
-            // Send to server to store in DB. (HTTP Request)
-           fetch('https://ta-management-47.herokuapp.com/api/user/login', {
+            fetch('https://ta-management-47.herokuapp.com/api/user/login', {
              // Configure
              method: 'POST',
              body: JSON.stringify(userData),
@@ -52,15 +38,19 @@ function Login() {
                'Content-Type': 'application/json' // Denote we are sending JSON data.
              }
 
-           });
-           */
-            
-
-           
-          
+           }).then(
+               response =>
+               {
+               if (response.status===200) {
+                 // Store username cookie
+               }
+               else {
+                 // Clear existing cookies.
+               }
+              }
              
-
-        }} to={"/register"}>
+           );
+          }} to={"/register"}>
         <button>Login</button>
         </Link>
         
