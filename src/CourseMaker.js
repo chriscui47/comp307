@@ -5,20 +5,17 @@ import {Form, FormGroup, FormText, FormLabel
 , FormControl, Button} from 'react-bootstrap';
 import React, { useState } from 'react';
 import { useRef } from 'react';
-function Register() {
+function CourseMaker() {
 
-  const userNameRef= useRef();
-  const passWordRef = useRef();
-  const firstNameRef = useRef();
-  const lastNameRef= useRef();
-  const studentIDRef = useRef();
-  const userTypeRef = useRef();
-  const emailRef = useRef();
+  const courseRef= useRef();
+  const lastNameRef = useRef();
+  const courseIDRef = useRef();
+  const instructionRef = useRef();
   function submitHandler(event) {
     event.preventDefault();
 
-    const enteredUserName = userNameRef.current.value;
-    const enteredPassWord = passWordRef.current.value;
+    const course = courseRef.current.value;
+    const last = passWordRef.current.value;
     const enteredfName = firstNameRef.current.value;
     const enteredlName = lastNameRef.current.value;
     const enteredStudentID = studentIDRef.current.value;
@@ -45,7 +42,7 @@ function Register() {
      }
 
    }).then(
-     
+     // Add logic
      response => console.log(response)
      ); 
   }
@@ -53,33 +50,21 @@ function Register() {
   return (
     <div className={styles.register}>
       <form onSubmit={submitHandler}>
-        First Name <br />
-        <input type="text" required id='fname' ref={firstNameRef}></input> <br />
-        Last Name <br />
-        <input type="text" required id='lname' ref={lastNameRef}></input> <br />
-        Student ID <br />
-        <input type="text" required id='id' ref={studentIDRef}></input> <br />
-        Username <br />
-        <input type="text" required id='username' ref={userNameRef}></input> <br />
-        Password <br />
-        <input type="text" required id='password' ref={passWordRef}></input>
-        <br />
-        Email <br />
-        <input type="text" required id='email' ref={emailRef}></input>
-        <br />
-        User Type <br />
-        <select required id='usertype' ref={userTypeRef}>
-        <option value="ta">TA</option>
-        <option value="student">Student</option>
-        <option value="sysop">System Operator</option>
-        <option value="prof">Professor</option>
-    </select>
+        Course Number <br />
+        <input type="text" required id='number' ref={courseRef}></input> <br />
+        Course Name <br />
+        <input type="text" required id='name' ref={courseNameRef}></input> <br />
+        Term, Month, Year <br />
+        <input type="text" required id='id' ref={course}></input> <br />
+        Instructor Name <br />
+        <input type="text" required id='username' ref={instructionRef}></input> <br />
+        
       < br />
       <br />
-        <button>Register</button>
+        <button>Create Course</button>
       </form>
     </div>
   );
 }
 
-export default Register;
+export default CourseMaker;

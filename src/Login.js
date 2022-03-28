@@ -1,19 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
 import styles from './Register.module.css';
-import {Form, FormGroup, FormText, FormLabel
-, FormControl, Button} from 'react-bootstrap';
 import React, { useState } from 'react';
 import { useRef } from 'react';
-import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 function Login() {
-
+  const delay = ms => new Promise(res => setTimeout(res, ms));
   const userNameRef= useRef();
   const passWordRef = useRef();
-
+  const [loggedIn, setLoggedIn] = useState(false);
   return (
     <div className={styles.register}>
+      { loggedIn ? (<Navigate push to="/dashboard"/>) : null }
       <form>
         Username <br />
         <input type="text" required id='username' ref={userNameRef}></input> <br />
@@ -21,16 +19,15 @@ function Login() {
         <input type="text" required id='password' ref={passWordRef}></input>
         <br />  <br />
 
-        <Link onClick={ e => {
+        <button type="button" onClick={ async e => {
           const enteredUserName = userNameRef.current.value;
           const enteredPassWord = passWordRef.current.value;
             const userData = {
             username: enteredUserName,
             password: enteredPassWord,
             }        
-            
-            
-            fetch('https://ta-management-47.herokuapp.com/api/user/login', {
+           
+            await fetch('https://ta-management-47.herokuapp.com/api/user/login', {
              // Configure
              method: 'POST',
              body: JSON.stringify(userData),
@@ -41,19 +38,21 @@ function Login() {
            }).then(
                response =>
                {
+                 console.log(response.status);
                if (response.status===200) {
+                  setLoggedIn(true);
                   localStorage.setItem("user", "yes");
                   
                }
                else {
+                 setLoggedIn(false);
                  localStorage.clear();
                }
               }
              
            );
-          }} to={"/dashboard"}>
-        <button>Login</button>
-        </Link>
+          }}>
+        Login</button>
         
       </form>
     </div>
