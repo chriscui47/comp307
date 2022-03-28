@@ -24,7 +24,6 @@ function Login() {
         <Link onClick={ e => {
           const enteredUserName = userNameRef.current.value;
           const enteredPassWord = passWordRef.current.value;
-          var errorCode;
             const userData = {
             username: enteredUserName,
             password: enteredPassWord,
