@@ -41,6 +41,7 @@ function Login() {
               {
                 if (response.status===404) {
                   // Should prevent event here.
+                  console.log("Username was invalid.");
                   e.preventDefault();
                 }
                 else {
@@ -49,7 +50,7 @@ function Login() {
               });
              
 
-        } }to={"/register"}>
+        }} to={"/register"}>
         <button>Login</button>
         </Link>
         
