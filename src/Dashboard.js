@@ -14,7 +14,16 @@ const COURSES = [
 ]
 
 function Dashboard() {
-    return (
+
+    const [loggedIn, setLoggedIn] = useState(false);
+    useEffect(() => { if (localStorage.getItem("user")==="yes") {
+        setLoggedIn(true);
+    } }, []);
+    return ( 
+        {
+           
+         (
+             
         <section className={styles.dashboard}>
 
             <h2 className={styles.title}>Select a course:</h2>
@@ -22,13 +31,12 @@ function Dashboard() {
         {   
         
             COURSES.map((course) => <Course key={course.code} code={course.code} professor = {course.prof} term={course.term}/>)
-            
+         
         }
         </ul>
-        </section>
+        </section> 
         
-    
-
+        
     );
     
 }

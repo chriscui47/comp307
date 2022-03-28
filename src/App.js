@@ -6,6 +6,7 @@ import Login from "./Login";
 import Dashboard from "./Dashboard";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useRef } from 'react';
+import LoggingIn from "./LoggingIn"
 
 import {Form, FormGroup, FormText, FormLabel
   , FormControl, Button,
@@ -28,7 +29,8 @@ export default function App() {
         <Route exact path="/" element={<Login />}></Route>
           <Route path="register" element={<Register />} />
           <Route path="logout" element={<Logout />} />
-          <Route path="dashboard" element = {<Dashboard />} />
+          <Route path="dashboard" element = {
+          <Dashboard />} />
           <Route path="*" element={<NoMatch />} />
       </Routes>
     </div>

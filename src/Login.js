@@ -29,6 +29,7 @@ function Login() {
             password: enteredPassWord,
             }        
             
+            
             fetch('https://ta-management-47.herokuapp.com/api/user/login', {
              // Configure
              method: 'POST',
@@ -41,15 +42,16 @@ function Login() {
                response =>
                {
                if (response.status===200) {
-                 // Store username cookie
+                  localStorage.setItem("user", "yes");
+                  
                }
                else {
-                 // Clear existing cookies.
+                 localStorage.clear();
                }
               }
              
            );
-          }} to={"/register"}>
+          }} to={"/dashboard"}>
         <button>Login</button>
         </Link>
         
