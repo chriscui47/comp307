@@ -24,10 +24,25 @@ function Login() {
         <Link onClick={ e => {
           const enteredUserName = userNameRef.current.value;
           const enteredPassWord = passWordRef.current.value;
+          var errorCode;
             const userData = {
             username: enteredUserName,
             password: enteredPassWord,
-            }
+            }        
+            const xhr = new XMLHttpRequest();
+
+            function foo () {
+              if (xhr.readyState === 4) {
+                errorCode=xhr.status;
+              }};
+              xhr.addEventListener("readystatechange", foo);
+              xhr.open("POST", 'https://ta-management-47.herokuapp.com/api/user/login', true);
+              xhr.send(userData);
+            
+            console.log(errorCode);
+          
+              /** 
+               * 
             // Send to server to store in DB. (HTTP Request)
            fetch('https://ta-management-47.herokuapp.com/api/user/login', {
              // Configure
@@ -36,18 +51,13 @@ function Login() {
              headers: {
                'Content-Type': 'application/json' // Denote we are sending JSON data.
              }
-           }).then(
-             response =>
-              {
-                if (response.status===404) {
-                  // Should prevent event here.
-                  console.log("Username was invalid.");
-                  e.preventDefault();
-                }
-                else {
-                  return null;
-                }
-              });
+
+           });
+           */
+            
+
+           
+          
              
 
         }} to={"/register"}>
