@@ -45,7 +45,7 @@ function Register() {
      }
 
    }).then(
-     
+     // Add logic
      response => console.log(response)
      ); 
   }
