@@ -24,6 +24,7 @@ export default function App() {
     </Container>
 
   </Navbar>
+  <AllCourses />
       <Routes>
         <Route exact path="/" element={<Login />}></Route>
           <Route path="register" element={<Register />

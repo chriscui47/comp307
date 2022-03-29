@@ -15,29 +15,43 @@ const COURSES = [
     }
 ]
 
-function Dashboard() {
 
-    const [loggedIn, setLoggedIn] = useState(false);
-    useEffect(() => { if (localStorage.getItem("user")==="yes") {
-        setLoggedIn(true);
-    } }, []);
 
-    return ( 
-       
-        <div>
-    { loggedIn ?
-           
-        <section className={styles.dashboard}>
+var HttpClient = function() {
+    this.get = function(aCallback) {
+        var anHttpRequest = new XMLHttpRequest();
+        anHttpRequest.onreadystatechange = function() { 
+            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+                aCallback(anHttpRequest.responseText);
+        }
 
-            <h2 className={styles.title}>Select a course:</h2>
+        anHttpRequest.open( "GET", 'https://ta-management-47.herokuapp.com/api/courses', true );            
+        anHttpRequest.send( null );
+    }
+}
+
+function aSync3() {
+var client = new HttpClient();
+client.get(function(response) {
+    console.log(response);
+})
+}
+function AllCourses() {
+
+    return (     
+        <section className={styles.dashboard}>     
+       <button onClick={aSync3}>Test</button>
+
+            
+            <h2 className={styles.title}>Course List:</h2>
             <ul className={styles.courselist}>
            { COURSES.map((course) => <Course key={course.code} code={course.code} professor = {course.prof} term={course.term}/>)}
 
         </ul>
         </section> 
-  :
-    <h1>Log in again</h1>}
-        </div> );
+  
+
+      );
     
 }
-export default Dashboard;
+export default AllCourses;
