@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 
-import styles from './Dashelement.module.css';
+import styles from './DashElement.module.css';
 
 
 function DashElement(props) {
