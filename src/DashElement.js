@@ -6,9 +6,11 @@ import styles from './DashElement.module.css';
 
 function DashElement(props) {
     return (
-        <div>
-        <h2>{props.title}</h2>
-        <button>Select</button>
+        <div className={styles.element}>
+        <div className={styles.content}>
+            <h1>{props.title}</h1>
+            <button className={styles.button}>Select</button>
+        </div>
         </div>
     );
 }

@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import styles from './Register.module.css';
 import {Form, FormGroup, FormText, FormLabel

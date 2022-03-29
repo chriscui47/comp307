@@ -1,11 +1,13 @@
+import { Link } from 'react-router-dom';
 import './App.css';
-
+import styles from './Logout.module.css';
 function Logout() {
   return (
-    <div>
+    <div className={styles.main}>
       {localStorage.clear()}
-      <h1>You have been logged out!</h1>
+      You have been logged out!
     </div>
+   
   );
 }
 // At end, export. 
