@@ -3,11 +3,9 @@ import { Routes, Route, Outlet, Link } from "react-router-dom";
 import Register from "./Register";
 import Logout from "./Logout";
 import Login from "./Login";
-import Dashboard from "./Dashboard";
+import AllCourses from "./AllCourses";
 import Dash from "./Dash";
-import { useRef } from 'react';
-import LoggingIn from "./LoggingIn"
-import CourseMaker from "./CourseMaker"
+
 import {Form, FormGroup, FormText, FormLabel
   , FormControl, Button,
 Navbar, NavbarBrand, NavLink, Container, Nav} from 'react-bootstrap';
@@ -33,6 +31,9 @@ export default function App() {
           <Route path="logout" element={<Logout />} />
           <Route path="dashboard" element = {
           <Dash/>} />
+          <Route path="SysOp">
+
+          </Route>
           <Route path="*" element={<NoMatch />} />
       </Routes>
     </div>
