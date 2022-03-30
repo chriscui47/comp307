@@ -5,6 +5,7 @@ import Logout from "./Logout";
 import Login from "./Login";
 import AllCourses from "./AllCourses";
 import Dash from "./Dash";
+import UserCourses from "./UserCourses";
 
 import {Form, FormGroup, FormText, FormLabel
   , FormControl, Button,
@@ -23,6 +24,7 @@ export default function App() {
     </Nav>
     </Container>
   </Navbar>
+  <UserCourses />
       <Routes>
         <Route exact path="/" element={<Login />}></Route>
           <Route path="register" element={<Register />
