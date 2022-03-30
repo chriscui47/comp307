@@ -16,10 +16,10 @@ function Dash() {
         <div className={styles.screen}>
         <div className={styles.box}>
             <div className={styles.board}>
-            {(isTA() || isProf() || isAdmin() || isSysOp()) && <DashElement title="TA Management"/>}
-            {(isAdmin() || isSysOp()) && <DashElement title="TA Administration"/>}
-            {isSysOp() && <DashElement title="Sysop Tasks"/>}
-            {isUser() && <DashElement title="Rate a TA"/>}
+            {(isTA() || isProf() || isAdmin() || isSysOp()) && <DashElement title="TA Management" url="/manage"/>}
+            {(isAdmin() || isSysOp()) && <DashElement title="TA Administration" url="/admin"/>}
+            {isSysOp() && <DashElement title="Sysop Tasks" url="/sysop"/>}
+            {isUser() && <DashElement title="Rate a TA" url="/rate"/>}
             </div>
         </div>
         </div>

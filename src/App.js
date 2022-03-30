@@ -1,16 +1,15 @@
 import * as React from "react";
-import { Routes, Route, Outlet, Link } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import Register from "./Register";
 import Logout from "./Logout";
 import Login from "./Login";
-import CourseList from "./CourseList";
 import Dash from "./Dash";
-import TAList from "./TAList"
 import SysOp from "./SysOp";
+import TARate from "./TARate";
+import TAAdministration from "./TAAdministration";
+import TAManagement from "./TAManagement";
 
-import {Form, FormGroup, FormText, FormLabel
-  , FormControl, Button,
-Navbar, NavbarBrand, NavLink, Container, Nav} from 'react-bootstrap';
+import {Navbar, Container, Nav} from 'react-bootstrap';
   
 export default function App() {
   return (
@@ -33,11 +32,14 @@ export default function App() {
           <Dash/>} />
           <Route path="sysop" element={<SysOp/>} />
           <Route path="*" element={<NoMatch />} />
+          <Route path="manage" element={<TAManagement />} />
+          <Route path="rate" element={<TARate />} />
+          <Route path="admin" element={<TAAdministration />} />
+
       </Routes>
     </div>
   );
 }
-
 
 function NoMatch() {
   return (

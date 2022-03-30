@@ -6,7 +6,7 @@ import { Routes, Route, Outlet, Link } from "react-router-dom";
 
 function DashElement(props) {
     return (
-        <Link to="/SysOp">
+        <Link to={props.url}>
         <div className={styles.element}>
         <div className={styles.content}>
             

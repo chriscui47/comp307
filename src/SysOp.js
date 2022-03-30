@@ -1,7 +1,5 @@
 import CourseList from "./CourseList";
-import {
-    isUser, isTA, isAdmin, isSysOp, isProf
-} from "./Permissions.js";
+import {isUser, isTA, isAdmin, isSysOp, isProf} from "./Permissions.js";
 import LinkLogin from "./LinkLogin";
 function SysOp() {
 
