@@ -22,9 +22,7 @@ export default function App() {
       <Nav.Link href="/dashboard">Dashboard</Nav.Link>
     </Nav>
     </Container>
-
   </Navbar>
-  <AllCourses />
       <Routes>
         <Route exact path="/" element={<Login />}></Route>
           <Route path="register" element={<Register />

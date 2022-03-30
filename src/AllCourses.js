@@ -1,52 +1,26 @@
 import Course from "./Course";
-import styles from "./Dashboard.module.css"
+import styles from "./AllCourses.module.css"
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-const COURSES = [
-    { 
-        code: "COMP202",
-        prof: "Vybihal",
-        term: "Winter 2022",
-    },
-    {
-        code: "COMP250",
-        prof: "Robillard",
-        term: "Summer 2022"
-    }
-]
+import { getDefaultNormalizer } from "@testing-library/react";
 
-
-
-var HttpClient = function() {
-    this.get = function(aCallback) {
-        var anHttpRequest = new XMLHttpRequest();
-        anHttpRequest.onreadystatechange = function() { 
-            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
-                aCallback(anHttpRequest.responseText);
-        }
-
-        anHttpRequest.open( "GET", 'https://ta-management-47.herokuapp.com/api/courses', true );            
-        anHttpRequest.send( null );
+// Function to async return courses from database.
+async function get(){
+    let res = await fetch("https://ta-management-47.herokuapp.com/api/courses", {method: 'GET'});  
+    if (res.status == 200) {
+        let json = await res.json();
+        return json;
     }
 }
-
-function aSync3() {
-var client = new HttpClient();
-client.get(function(response) {
-    console.log(response);
-})
-}
+// Set state to denote recieved the data 
 function AllCourses() {
+    const [data, setData] = useState([]);
+    get().then(response => setData(response))
 
     return (     
         <section className={styles.dashboard}>     
-       <button onClick={aSync3}>Test</button>
-
-            
-            <h2 className={styles.title}>Course List:</h2>
             <ul className={styles.courselist}>
-           { COURSES.map((course) => <Course key={course.code} code={course.code} professor = {course.prof} term={course.term}/>)}
-
+        {data.map(course => <Course required key = {course.updatedAt} code = {course.course_num} professor = {course.instructor_assigned_name} term = {course.term_month_year} />)}
         </ul>
         </section> 
   

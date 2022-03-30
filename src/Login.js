@@ -5,7 +5,6 @@ import { useRef } from 'react';
 import { Navigate } from "react-router-dom";
 
 function Login() {
-  const delay = ms => new Promise(res => setTimeout(res, ms));
   const userNameRef= useRef();
   const passWordRef = useRef();
   const [loggedIn, setLoggedIn] = useState(false);

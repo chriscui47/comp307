@@ -2,7 +2,8 @@ import styles from './Course.module.css';
 
 function Course(props) {
     return (
-    <li className={styles.course}>
+    <li>
+        <button className={styles.course}>
         <div>
             <h3>Course Code: {props.code} </h3>
         </div>
@@ -12,7 +13,7 @@ function Course(props) {
         <div>
             <h3>Semester: {props.term} </h3> 
         </div>
-        <button>Select Course</button>
+       </button>
     
         
     </li>);

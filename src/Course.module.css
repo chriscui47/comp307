@@ -1,6 +1,13 @@
 .course {
-    background-color: lightgrey;
+    background-color: palegoldenrod;
     width: 400px;
     margin: 0 0 10px 0;
     padding: 10px;
+    text-align: left;
+    border: none;
+    border: 2px solid goldenrod;
+}
+
+.course:hover {
+    color: goldenrod;
 }
