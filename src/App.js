@@ -3,9 +3,8 @@ import { Routes, Route, Outlet, Link } from "react-router-dom";
 import Register from "./Register";
 import Logout from "./Logout";
 import Login from "./Login";
-import AllCourses from "./AllCourses";
+import CourseList from "./CourseList";
 import Dash from "./Dash";
-import UserCourses from "./UserCourses";
 
 import {Form, FormGroup, FormText, FormLabel
   , FormControl, Button,
@@ -24,7 +23,7 @@ export default function App() {
     </Nav>
     </Container>
   </Navbar>
-  <UserCourses />
+  <CourseList url="https://ta-management-47.herokuapp.com/api/courses/user/?student_id=1" />
       <Routes>
         <Route exact path="/" element={<Login />}></Route>
           <Route path="register" element={<Register />
