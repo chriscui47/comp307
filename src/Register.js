@@ -11,17 +11,27 @@ function Register() {
   const firstNameRef = useRef();
   const lastNameRef= useRef();
   const studentIDRef = useRef();
-  const userTypeRef = useRef();
   const emailRef = useRef();
+
+  var permissions = Array.from({length: 5}, (v, i) => 0); // Set all to zero.
+
+  function getClicked(i) {
+    if (permissions[i]==0) {
+      permissions[i]=1;
+      return;
+    }
+    permissions[i]=0;
+
+  }
   function submitHandler(event) {
     event.preventDefault();
-
+    console.log(permissions);
     const enteredUserName = userNameRef.current.value;
     const enteredPassWord = passWordRef.current.value;
     const enteredfName = firstNameRef.current.value;
     const enteredlName = lastNameRef.current.value;
     const enteredStudentID = studentIDRef.current.value;
-    const enteredUserType = userTypeRef.current.value;
+    const enteredUserType = permissions.join(' ');
     const enteredEmailRef = emailRef.current.value;
 
     const userData = {
@@ -65,14 +75,14 @@ function Register() {
         <br />
         Email <br />
         <input type="text" required id='email' ref={emailRef}></input>
-        <br />
-        User Type <br />
-        <select required id='usertype' ref={userTypeRef}>
-        <option value="ta">TA</option>
-        <option value="student">Student</option>
-        <option value="sysop">System Operator</option>
-        <option value="prof">Professor</option>
-    </select>
+    <br />
+    <input type="checkbox" id="student" name="student" onClick={() => getClicked(0)}></input> Student<br />
+    <input type="checkbox" id="ta" name="ta" onClick={() => getClicked(1)}></input> TA <br />
+    <input type="checkbox" id="prof" name="prof" onClick={() => getClicked(2)}></input> Professor<br />
+    <input type="checkbox" id="admin" name="admin" onClick={() => getClicked(3)}></input> TA Administrator<br />
+    <input type="checkbox" id="sysop" name="sysop" onClick={() => getClicked(4)}></input> System Operator<br />
+    
+  
       < br />
       <br />
         <button>Register</button>

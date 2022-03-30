@@ -37,10 +37,10 @@ function Login() {
            }).then(
                response =>
                {
-                 console.log(response.status);
                if (response.status===200) {
-                  setLoggedIn(true);
-                  localStorage.setItem("user", "yes");
+                  setLoggedIn(true); // Student, TA, Prof, Administrator, SysOp
+                  console.log(response.json());
+                  localStorage.setItem("permissions", "10000");
                   
                }
                else {
