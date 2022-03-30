@@ -3,6 +3,7 @@ import styles from './Course.module.css';
 function Course(props) {
     return (
     <li>
+        
         <button className={styles.course}>
         <div>
             <h3>Course Code: {props.code} </h3>
@@ -14,7 +15,7 @@ function Course(props) {
             <h3>Semester: {props.term} </h3> 
         </div>
        </button>
-    
+      
         
     </li>);
     // Upon selecting course go somewhere.

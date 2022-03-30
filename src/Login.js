@@ -4,6 +4,20 @@ import React, { useState } from 'react';
 import { useRef } from 'react';
 import { Navigate } from "react-router-dom";
 
+
+
+// Post request & await data => return json
+async function post(url, data){
+  let res = await fetch(url, {method: 'POST', body: JSON.stringify(data), 
+  headers: {
+    'Content-Type': 'application/json' // Denote we are sending JSON data.
+  }});  
+  if (res.status == 200) {
+      let json = await res.json();
+      return json;
+  }
+}
+
 function Login() {
   const userNameRef= useRef();
   const passWordRef = useRef();
@@ -18,7 +32,30 @@ function Login() {
         <input type="text" required id='password' ref={passWordRef}></input>
         <br />  <br />
 
-        <button type="button" onClick={ async e => {
+        <button type="button" onClick={ () => {
+          const enteredUserName = userNameRef.current.value;
+          const enteredPassWord = passWordRef.current.value;
+          const userData = {
+          username: enteredUserName,
+          password: enteredPassWord,
+          }      
+          // Get data, check if exists or not, if exists, set logged in to true, create
+          // k-v pairs in local storage corresponding to this users permissions and their ID
+          post('https://ta-management-47.herokuapp.com/api/user/login', userData).then(
+            response => { if (!response) {
+                return null;
+            }
+            else {
+              setLoggedIn(true);
+              localStorage.setItem("perm", response.role);
+              localStorage.setItem("id", response.student_id);
+            }
+            }
+          )
+          }
+
+          /*
+          async e => {
           const enteredUserName = userNameRef.current.value;
           const enteredPassWord = passWordRef.current.value;
             const userData = {
@@ -39,8 +76,8 @@ function Login() {
                {
                if (response.status===200) {
                   setLoggedIn(true); // Student, TA, Prof, Administrator, SysOp
-                  console.log(response.json());
-                  localStorage.setItem("permissions", "10000");
+                  console.log(response.json().role_name);
+                  
                   
                }
                else {
@@ -48,9 +85,9 @@ function Login() {
                  localStorage.clear();
                }
               }
-             
-           );
-          }}>
+
+           );*/
+          }>
         Login</button>
         
       </form>

@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 
 import styles from './DashElement.module.css';
-
+import { Routes, Route, Outlet, Link } from "react-router-dom";
 
 function DashElement(props) {
     return (
+        <Link to="/SysOp">
         <div className={styles.element}>
         <div className={styles.content}>
             
@@ -14,6 +15,7 @@ function DashElement(props) {
             </button>
         </div>
         </div>
+        </Link>
     );
 }
 

@@ -2,7 +2,6 @@ import Course from "./Course";
 import styles from "./AllCourses.module.css"
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import { getDefaultNormalizer } from "@testing-library/react";
 
 // Function to async return courses from database.
 async function get(url){

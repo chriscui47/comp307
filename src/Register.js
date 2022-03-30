@@ -67,14 +67,15 @@ function Register() {
         Last Name <br />
         <input type="text" required id='lname' ref={lastNameRef}></input> <br />
         Student ID <br />
-        <input type="text" required id='id' ref={studentIDRef}></input> <br />
+        <input type="number" required id='id' ref={studentIDRef}></input> <br />
         Username <br />
         <input type="text" required id='username' ref={userNameRef}></input> <br />
         Password <br />
         <input type="text" required id='password' ref={passWordRef}></input>
         <br />
         Email <br />
-        <input type="text" required id='email' ref={emailRef}></input>
+        <input type="text" required id='email' ref={emailRef}></input> <br />
+        Select Role(s)
     <br />
     <input type="checkbox" id="student" name="student" onClick={() => getClicked(0)}></input> Student<br />
     <input type="checkbox" id="ta" name="ta" onClick={() => getClicked(1)}></input> TA <br />
@@ -82,8 +83,6 @@ function Register() {
     <input type="checkbox" id="admin" name="admin" onClick={() => getClicked(3)}></input> TA Administrator<br />
     <input type="checkbox" id="sysop" name="sysop" onClick={() => getClicked(4)}></input> System Operator<br />
     
-  
-      < br />
       <br />
         <button>Register</button>
       </form>
