@@ -8,6 +8,7 @@ import SysOp from "./SysOp";
 import TARate from "./TARate";
 import TAAdministration from "./TAAdministration";
 import TAManagement from "./TAManagement";
+import TAList from "./TAList";
 
 import {Navbar, Container, Nav} from 'react-bootstrap';
   
@@ -35,7 +36,6 @@ export default function App() {
           <Route path="manage" element={<TAManagement />} />
           <Route path="rate" element={<TARate />} />
           <Route path="admin" element={<TAAdministration />} />
-
       </Routes>
     </div>
   );

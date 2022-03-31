@@ -6,7 +6,8 @@ function SysOp() {
 
     return (
         <div>
-            {isSysOp() ? <CourseList url="https://ta-management-47.herokuapp.com/api/courses"/>
+            {isSysOp() ? <div><h2>All Courses</h2> 
+            <CourseList url="https://ta-management-47.herokuapp.com/api/courses"/> </div>
             : <LinkLogin/>}
         </div>
     )

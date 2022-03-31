@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
+import  TA  from "./TA";
 
 // Function to async return courses from database.
 async function get(url){
@@ -13,10 +14,12 @@ async function get(url){
 function TAList() {
     const [data, setData] = useState([]);
     useEffect(() => {
-        get('https://ta-management-47.herokuapp.com/api/user/ta').then(response => console.log(response));
+        get('https://ta-management-47.herokuapp.com/api/user/ta').then(response => setData(response));
       }, []); 
       return (
-          <div>Hello</div>
+          <div>
+              {data.map(ta => <TA required key={ta.student_id} fname={ta.first_name} lname={ta.last_name} id={ta.student_id}/>)}
+          </div>
       )
 }
 

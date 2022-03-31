@@ -53,40 +53,6 @@ function Login() {
             }
           )
           }
-
-          /*
-          async e => {
-          const enteredUserName = userNameRef.current.value;
-          const enteredPassWord = passWordRef.current.value;
-            const userData = {
-            username: enteredUserName,
-            password: enteredPassWord,
-            }        
-           
-            await fetch('https://ta-management-47.herokuapp.com/api/user/login', {
-             // Configure
-             method: 'POST',
-             body: JSON.stringify(userData),
-             headers: {
-               'Content-Type': 'application/json' // Denote we are sending JSON data.
-             }
-
-           }).then(
-               response =>
-               {
-               if (response.status===200) {
-                  setLoggedIn(true); // Student, TA, Prof, Administrator, SysOp
-                  console.log(response.json().role_name);
-                  
-                  
-               }
-               else {
-                 setLoggedIn(false);
-                 localStorage.clear();
-               }
-              }
-
-           );*/
           }>
         Login</button>
         

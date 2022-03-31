@@ -1,0 +1,10 @@
+.userInput {
+    height: 200px;
+    width: 650px;
+}
+
+@media only screen and (max-width: 660px) {
+    .userInput {
+        width: 300px;
+    }
+}
