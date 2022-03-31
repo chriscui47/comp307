@@ -4,9 +4,11 @@ function TAManagement() {
     return(
         <div>
             {
-                (isTA() || isProf() || isAdmin() || isSysOp()) ? <div>TA Management</div>
-                : 
-                <LinkLogin />
+                (isTA() || isProf() || isAdmin() || isSysOp()) ? 
+                
+                <div>TA Management</div>
+                // Get all courses by professor.
+                : <LinkLogin />
             }
            
         </div>
