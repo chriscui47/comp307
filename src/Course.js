@@ -1,10 +1,12 @@
 import styles from './Course.module.css';
 
+
 function Course(props) {
     return (
     <li>
         
-        <button className={styles.course}>
+        <button className={styles.course} onClick="displayTAs"
+        >
         <div>
             <h3>Course Code: {props.code} </h3>
         </div>

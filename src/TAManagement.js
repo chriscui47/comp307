@@ -6,8 +6,14 @@ function TAManagement() {
             {
                 (isTA() || isProf() || isAdmin() || isSysOp()) ? 
                 
-                <div>TA Management</div>
-                // Get all courses by professor.
+                <div>
+
+                    
+
+
+                </div>
+                // Get all courses by professor. => On select a course, show dropdown
+                // Of performance log. Each course should have associated performance log.
                 : <LinkLogin />
             }
            

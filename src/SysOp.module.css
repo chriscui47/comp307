@@ -1,0 +1,28 @@
+.screen {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+}
+
+.child {
+    text-align: center;
+    border: 1px solid grey;
+    background-color: lightblue;
+    padding: 10px;
+}
+
+.button {
+    background-color: lightblue;
+    width: 100%;
+    border: 1px solid black;
+}
+
+.reg {
+    border: 1px solid black;
+}
+
+@media only screen and (min-width: 900px) {
+    .screen {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}

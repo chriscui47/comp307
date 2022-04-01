@@ -47,6 +47,7 @@ function Login() {
             }
             else {
               setLoggedIn(true);
+              console.log(response);
               localStorage.setItem("perm", response.role);
               localStorage.setItem("id", response.student_id);
             }

@@ -2,6 +2,7 @@ import Course from "./Course";
 import styles from "./AllCourses.module.css"
 import React, { useState } from 'react';
 import { useEffect } from 'react';
+import CourseTA from './CourseTA';
 
 // Function to async return courses from database.
 async function get(url){
@@ -12,7 +13,7 @@ async function get(url){
     }
 }
 // Set state to denote recieved the data 
-function CourseList(props) {
+function CourseListTA(props) {
     const [data, setData] = useState([]);
     useEffect(() => {
         get(props.url).then(response => {setData(response); console.log(response)} );
@@ -20,12 +21,11 @@ function CourseList(props) {
     return (     
         <section className={styles.dashboard}>     
             <ul className={styles.courselist}>
-        {data.map(course => <Course required key = {course.id} code = {course.course_num} professor = {course.instructor_assigned_name} term = {course.term_month_year} />)}
+        {data.map(course => <CourseTA required key = {course.id} users = {course.users} code = {course.course_num} professor = {course.instructor_assigned_name} term = {course.term_month_year} />)}
         </ul>
         </section> 
-  
 
       );
     
 }
-export default CourseList;
+export default CourseListTA;

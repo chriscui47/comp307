@@ -14,7 +14,7 @@ async function get(url){
 function TAList() {
     const [data, setData] = useState([]);
     useEffect(() => {
-        get('https://ta-management-47.herokuapp.com/api/user/ta').then(response => setData(response));
+        get('https://ta-management-47.herokuapp.com/api/user').then(response => setData(response));
       }, []); 
       return (
           <div>
