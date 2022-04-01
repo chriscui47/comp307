@@ -1,12 +1,25 @@
 .course {
     background-color: palegoldenrod;
     width: 400px;
-    margin: 0 0 10px 0;
-    padding: 10px;
     text-align: left;
     border: 2px solid goldenrod;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid goldenrod;
 }
 
-.course:hover {
-    color: goldenrod;
+.dropdown {
+    width: 400px;
+    border: 2px solid goldenrod;
+    border-top: 1px solid goldenrod;
+    background-color: lightgrey;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+}
+
+.msg {
+    font-size: 12px;
 }
