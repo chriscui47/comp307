@@ -1,17 +1,18 @@
 .course {
     background-color: palegoldenrod;
-    width: 400px;
-    text-align: left;
+    width: 100%;
+    text-align: center;
     border: 2px solid goldenrod;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 10px;
     padding-bottom: 5px;
     border-bottom: 1px solid goldenrod;
+    margin-top: 5px;
 }
 
 .dropdown {
-    width: 400px;
+    width: 100%;
     border: 2px solid goldenrod;
     border-top: 1px solid goldenrod;
     background-color: lightgrey;
