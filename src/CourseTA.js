@@ -13,15 +13,24 @@ async function get(url){
     }
 }
 
+async function getWithBody(url, body){
+    let res = await fetch(url, {method: 'GET',
+    body: JSON.stringify(body)
+});  
+    if (res.status == 200) {
+        let json = await res.json();
+        return json;
+    }
+}
+
 function CourseTA(props) {
-    var existingTAs = [];
-    const [TAs, setTAs] = useState([]);
     const [showTAs, setShowTAs] = useState(false);
-    useEffect(() => { // Get all users, filter by TAs.
-        get("https://ta-management-47.herokuapp.com/api/user").then(response => {setTAs(response)} );
-        props.users.filter(user => user.role_name.charAt(2)==1)
-        .forEach(user => existingTAs.push(user.id));
-      }, []); 
+    const [allUsers, setAllUsers] = useState([])
+    const [currentTAs, setCurrentTAs] = useState([])
+    useEffect(() => {
+        get("https://ta-management-47.herokuapp.com/api/user").then(response => setAllUsers(response));;
+        setCurrentTAs(props.users);
+    }, []); 
     return (
     <li>
         
@@ -38,17 +47,20 @@ function CourseTA(props) {
         <button onClick={
                         function() {
                             setShowTAs(!showTAs);
+                            // Update users in class here.
+                            get(`https://ta-management-47.herokuapp.com/api/user/courses/?id=${props.id}`).then(response => setCurrentTAs(response));
+
                     }}>Edit TAs</button> <div className={styles.msg}>Note selected TAs are currently TAs for this class.</div>
        
        </div>
        {showTAs && <div className={styles.dropdown}>
        <ul>
-        { // Add TAs that do exist in this course already, denote that they have been checked.
-            props.users.map(user => <TA fname={user.first_name} lname={user.last_name} checked={true}/>)     
-        }
-        {   // Get all remaining TAs, denote that they haven't been checked. 
-            TAs.filter(user => user.role_name.charAt(2)==1 && !existingTAs.includes(user.id)) // Add rest of TAs
-            .map(user => <TA fname={user.first_name} lname={user.last_name} checked={false}/>)
+        {
+         // Here get list of TAs    
+         allUsers.filter(user => user.role_name.charAt(2)==1)
+         .map(user => <TA required key = {user.id} id = {user.id} code = {props.id} fname={user.first_name} lname={user.last_name} 
+             checked={currentTAs.some(el => el.id == user.id)}/>)
+     
         }
         </ul>
           

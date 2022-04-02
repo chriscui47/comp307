@@ -5,10 +5,9 @@ import Logout from "./Logout";
 import Login from "./Login";
 import Dash from "./Dash";
 import SysOp from "./SysOp";
-import TARate from "./TARate";
 import TAAdministration from "./TAAdministration";
 import TAManagement from "./TAManagement";
-import TAList from "./TAList";
+
 
 import {Navbar, Container, Nav} from 'react-bootstrap';
   
@@ -34,7 +33,7 @@ export default function App() {
           <Route path="sysop" element={<SysOp/>} />
           <Route path="*" element={<NoMatch />} />
           <Route path="manage" element={<TAManagement />} />
-          <Route path="rate" element={<TARate />} />
+          <Route path="rate" element={<div>Hello</div>} />
           <Route path="admin" element={<TAAdministration />} />
       </Routes>
     </div>

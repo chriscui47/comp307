@@ -21,7 +21,7 @@ function CourseListTA(props) {
     return (     
         <section className={styles.dashboard}>     
             <ul className={styles.courselist}>
-        {data.map(course => <CourseTA required key = {course.id} users = {course.users} code = {course.course_num} professor = {course.instructor_assigned_name} term = {course.term_month_year} />)}
+        {data.map(course => <CourseTA required key = {course.id} id = {course.id} users = {course.users} code = {course.course_num} professor = {course.instructor_assigned_name} term = {course.term_month_year} />)}
         </ul>
         </section> 
 
