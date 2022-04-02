@@ -2,10 +2,11 @@ import './App.css';
 import styles from './Register.module.css';
 import {Form, FormGroup, FormText, FormLabel
 , FormControl, Button} from 'react-bootstrap';
+import { Navigate } from "react-router-dom";
 import React, { useState } from 'react';
 import { useRef } from 'react';
 function Register() {
-
+  const [registered, setRegistered] = useState(false);
   const userNameRef= useRef();
   const passWordRef = useRef();
   const firstNameRef = useRef();
@@ -43,7 +44,6 @@ function Register() {
       role_name: enteredUserType,
       email: enteredEmailRef
     }
-    console.log(userData);
     // Send to server to store in DB. (HTTP Request)
    fetch("https://ta-management-47.herokuapp.com/api/user/create", {
      // Configure
@@ -55,11 +55,12 @@ function Register() {
 
    }).then(
      // Add logic
-     response => console.log(response)
+     response => setRegistered(true)
      ); 
   }
 
   return (
+    registered ? (<Navigate push to="/"/>) : 
     <div className={styles.register}>
       <form onSubmit={submitHandler}>
         First Name <br />
@@ -87,6 +88,7 @@ function Register() {
         <button>Register</button>
       </form>
     </div>
+  
   );
 }
 
