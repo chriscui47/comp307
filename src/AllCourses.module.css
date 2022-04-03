@@ -1,6 +1,7 @@
 .dashboard {
-    padding: 10px;
+    
 }
 .courselist {
     list-style-type: none;
+    margin-right: 30px;
 }
