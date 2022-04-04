@@ -2,7 +2,7 @@ import styles from './Course.module.css';
 import TA from './TA.js';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-
+import TAComments from "./TAComments";
 
 // Function to async return courses from database.
 async function get(url){
@@ -14,15 +14,8 @@ async function get(url){
 }
 
 
-
 function CourseTA(props) {
     const [showTAs, setShowTAs] = useState(false);
-    const [allUsers, setAllUsers] = useState([])
-    const [currentTAs, setCurrentTAs] = useState([])
-    useEffect(() => {
-        get("https://ta-management-47.herokuapp.com/api/user").then(response => setAllUsers(response));;
-        setCurrentTAs(props.users);
-    }, []); 
     return (
     <li>
         
@@ -39,24 +32,23 @@ function CourseTA(props) {
         <button onClick={
                         function() {
                             setShowTAs(!showTAs);
-                            // Update users in class here.
-                            get(`https://ta-management-47.herokuapp.com/api/user/courses/?id=${props.id}`).then(response => setCurrentTAs(response));
-
-                    }}>Edit TAs</button> {showTAs && <div className={styles.msg}>Note TAs that are selected are currently TAs in {props.code}. <br /> Check/uncheck to change whether a TA is registered in this course.</div>}
+                    }}>Show TAs and Comments</button>
        
        </div>
        {showTAs && <div className={styles.dropdown}>
        <ul>
+       Add a comment or view previously made comments. < br />
         {
          // Here get list of TAs    
-         allUsers
-         .filter(user => user.role_name.charAt(2)==1)
-         .map(user => <TA required key = {user.id} id = {user.id} code = {props.id} fname={user.first_name} lname={user.last_name} 
-             checked={currentTAs.some(el => el.id == user.id)}/>)
+         props.users
+         .filter(user => user.role_name.charAt(2)==1) // Filter by TAs. 
+         .map(user => <TAComments required key = {user.id} id= {user.id} course_id = {props.id} fname={user.first_name} lname={user.last_name} />)
      
         }
         </ul>
+
         
+          
        </div>}
     </li>);
 }

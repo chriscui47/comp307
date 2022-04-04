@@ -5,7 +5,7 @@ function Course(props) {
     return (
     <li>
         
-        <button className={styles.course} onClick="displayTAs"
+        <button className={styles.course} 
         >
         <div>
             <h3>Course Code: {props.code} </h3>

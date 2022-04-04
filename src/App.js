@@ -7,6 +7,9 @@ import Dash from "./Dash";
 import SysOp from "./SysOp";
 import TAAdministration from "./TAAdministration";
 import TAManagement from "./TAManagement";
+import {
+  isUser, isTA, isAdmin, isSysOp, isProf
+} from "./Permissions.js";
 
 
 import {Navbar, Container, Nav} from 'react-bootstrap';
@@ -20,6 +23,7 @@ export default function App() {
       <Nav.Link href="/">Login</Nav.Link>
       <Nav.Link href="/register">Register</Nav.Link>
       <Nav.Link href="/logout">Logout</Nav.Link>
+      {isUser() && <Nav.Link href="/dashboard">Dashboard</Nav.Link>}
     </Nav>
     </Container>
   </Navbar>

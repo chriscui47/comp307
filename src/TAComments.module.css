@@ -1,0 +1,31 @@
+.name {
+    font-size: 20px;
+    text-decoration: underline;
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+.text {
+    width: 300px;
+    height: 200px;
+}
+
+.comment {
+    width: 300px;
+    background-color: darkgrey;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+
+
+@media only screen and (min-width: 620px) {
+    .text {
+        width: 500px;
+        height: 100px;
+    }
+    .comment {
+        width: 500px;
+        height: auto;
+    }
+}

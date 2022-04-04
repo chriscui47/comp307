@@ -50,6 +50,7 @@ function Login() {
               console.log(response);
               localStorage.setItem("perm", response.role);
               localStorage.setItem("id", response.student_id);
+              localStorage.setItem("DBID", response.id);
             }
             }
           )

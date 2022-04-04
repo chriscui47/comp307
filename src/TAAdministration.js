@@ -8,6 +8,9 @@ function TAAdministration() {
             {
                 (isAdmin() || isSysOp()) ? 
                 <div>
+                    <div style={{textAlign: "center", width: "100%"}}>
+                    <h1>TA Administration</h1>
+                    </div>
                     <CourseListTA url="https://ta-management-47.herokuapp.com/api/courses"/> 
 
                 </div>
