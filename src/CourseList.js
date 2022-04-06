@@ -17,10 +17,18 @@ function CourseList(props) {
     useEffect(() => {
         get(props.url).then(response => {setData(response); console.log(response)} );
       }, []); 
-    return (     
+    return (     // CourseTA, CourseLog
         <section className={styles.dashboard}>     
             <ul className={styles.courselist}>
-        {data.map(course => <Course required key = {course.id} code = {course.course_num} professor = {course.instructor_assigned_name} term = {course.term_month_year} />)}
+
+        {props.log && data.map(course => <Course required key = {course.id} users = {course.users} log = {props.log} id={course.id} code = {course.course_num} professor = {course.instructor_assigned_name} term = {course.term_month_year} />)}
+
+        {props.edit && data.map(course => <Course required key = {course.id} users = {course.users} edit = {props.edit} id={course.id} code = {course.course_num} professor = {course.instructor_assigned_name} term = {course.term_month_year} />)}
+        
+        {/** Add logic here for TA rate */}
+        
+       
+        
         </ul>
         </section> 
   

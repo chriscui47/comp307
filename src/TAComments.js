@@ -13,12 +13,10 @@ async function get(url){
 
 
 function TAComments(props) {
-
-
     const [comments, setComments] = useState([]);
     const [textarea, setTextArea] = useState("");
     useEffect(() => {
-        get(`https://ta-management-47.herokuapp.com/api/course/user/comment?course_id=${props.course_id}&user_id=${props.id}`).then(response => {setComments(response); console.log(response)} );
+        get(`https://ta-management-47.herokuapp.com/api/course/user/comment?course_id=${props.course_id}&user_id=${props.id}`).then(response => {setComments(response)} );
       }, []); 
     
       const handleChange = (event) => {
@@ -47,14 +45,12 @@ function TAComments(props) {
 
     return (
         <div> 
-            <div className={styles.name}>{props.fname} {props.lname}</div>
-            
-      
+            {props.manage && <div>
+                <div className={styles.name}>{props.fname} {props.lname}</div>
             {comments.map(comment => <div className={styles.comment}>{comment.comment}</div>)}
-      
             <br />
             <br />
-            
+            </div>}
             <form onSubmit={handleSubmit}>
                 <textarea className={styles.text} value={textarea} onChange={handleChange} /> < br />
                 <button >Add Comment for {props.fname}</button>

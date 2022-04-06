@@ -5,6 +5,7 @@ import {Form, FormGroup, FormText, FormLabel
 import { Navigate } from "react-router-dom";
 import React, { useState } from 'react';
 import { useRef } from 'react';
+import CourseRegister from './CourseRegister';
 function Register() {
   const [registered, setRegistered] = useState(false);
   const userNameRef= useRef();
@@ -87,6 +88,8 @@ function Register() {
       <br />
         <button>Register</button>
       </form>
+
+     
     </div>
   
   );

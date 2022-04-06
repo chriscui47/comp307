@@ -42,10 +42,12 @@ function CourseTA(props) {
                             // Update users in class here.
                             get(`https://ta-management-47.herokuapp.com/api/user/courses/?id=${props.id}`).then(response => setCurrentTAs(response));
 
-                    }}>Edit TAs</button> {showTAs && <div className={styles.msg}>Note TAs that are selected are currently TAs in {props.code}. <br /> Check/uncheck to change whether a TA is registered in this course.</div>}
+                    }}>Edit TAs</button> 
+        {showTAs && <div className={styles.msg}>Note TAs that are selected are currently TAs in {props.code}. <br /> Check/uncheck to change whether a TA is registered in this course.</div>}
        
        </div>
        {showTAs && <div className={styles.dropdown}>
+       <div className={styles.msg}>Note TAs that are selected are currently TAs in {props.code}. <br /> Check/uncheck to change whether a TA is registered in this course.</div>
        <ul>
         {
          // Here get list of TAs    

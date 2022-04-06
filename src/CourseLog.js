@@ -42,7 +42,7 @@ function CourseTA(props) {
          // Here get list of TAs    
          props.users
          .filter(user => user.role_name.charAt(2)==1) // Filter by TAs. 
-         .map(user => <TAComments required key = {user.id} id= {user.id} course_id = {props.id} fname={user.first_name} lname={user.last_name} />)
+         .map(user => <TAComments required key = {user.id} manage = {true} id= {user.id} course_id = {props.id} fname={user.first_name} lname={user.last_name} />)
      
         }
         </ul>
