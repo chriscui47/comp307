@@ -5,12 +5,14 @@ import { useRef } from 'react';
 import { useEffect } from 'react';
 function CourseMaker() {
 
+  // References to store information about a course.
   const courseNumRef= useRef();
   const courseNameRef = useRef();
   const termRef = useRef();
   const monthRef = useRef();
   const yearRef = useRef();
   const profRef = useRef();
+  // Function to handle submitting a course.
   function submitHandler(event) {
     event.preventDefault();
 
@@ -97,7 +99,7 @@ function CourseMaker() {
         <input type="number" required id="year" ref={yearRef}></input> <br/>
     
         Instructor Name <br />
-        <div>
+        <div> {/** Filter by profs, and put in dropdown. */}
         <select required id = 'prof' ref = {profRef}>
           {allUsers
           .filter(user => user.role_name.charAt(4)==1)

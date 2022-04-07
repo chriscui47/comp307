@@ -24,7 +24,7 @@ function Login() {
   const [loggedIn, setLoggedIn] = useState(false);
   return (
     <div className={styles.register}>
-      { loggedIn ? (<Navigate push to="/dashboard"/>) : null }
+      { loggedIn ? (<Navigate push to="/dashboard"/>) : null /** If logged in, redirect to dashboard */}
       <form>
         Username <br />
         <input type="text" required id='username' ref={userNameRef}></input> <br />
@@ -32,7 +32,7 @@ function Login() {
         <input type="text" required id='password' ref={passWordRef}></input>
         <br />  <br />
 
-        <button type="button" onClick={ () => {
+        <button type="button" onClick={ () => { // Handle logging in
           const enteredUserName = userNameRef.current.value;
           const enteredPassWord = passWordRef.current.value;
           const userData = {
@@ -45,7 +45,7 @@ function Login() {
             response => { if (!response) {
                 return null;
             }
-            else {
+            else { // Set k-v pairs in local storage to indicate if a user was logged in.
               setLoggedIn(true);
               console.log(response);
               localStorage.setItem("perm", response.role);

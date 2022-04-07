@@ -10,6 +10,7 @@ async function get(url){
     }
 }
 
+// Append a course id to courses list
 function append(courses, id) {
     const s = [...courses];
     s.push(id);
@@ -17,6 +18,7 @@ function append(courses, id) {
 }
 
 function CourseRegister() {
+    // Initially set all courses.
     const [selectedCourses, setSelectedCourses] = useState([]);
     const [courses, setCourses] = useState([]);
     useEffect(() => {
@@ -24,7 +26,7 @@ function CourseRegister() {
       }, []); 
     return (
         <div>
-            {courses.map(course => 
+            {courses.map(course => // Map courses to checkboxes of courses that can be selected
             <div required key = {course.id}>
                 {course.course_num}
                 <input type="checkbox" required key = {course.id} onClick={() => 

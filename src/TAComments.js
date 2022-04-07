@@ -1,8 +1,8 @@
 import styles from './TAComments.module.css';
-import TA from './TA.js';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 
+// Component to display a TA + feature to add a comment about a TA + ability to view all comments about this TA
 async function get(url){
     let res = await fetch(url, {method: 'GET'});  
     if (res.status == 200) {

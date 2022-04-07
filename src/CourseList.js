@@ -27,8 +27,6 @@ function CourseList(props) {
         { // If using course list for editing TAs
         props.edit && data.map(course => <Course required key = {course.id} name={course.course_name} users = {course.users} edit = {props.edit} id={course.id} code = {course.course_num} professor = {course.professor}  term = {course.term_month_year} />)}
      
-       
-        
         </ul>
         </section> 
   

@@ -1,11 +1,12 @@
 import {isUser, isTA, isAdmin, isSysOp, isProf} from "./Permissions.js";
 import CourseList from "./CourseList.js";
 import LinkLogin from "./LinkLogin.js";
+// TA Management section
 function TAManagement() {
     return(
         <div>
             {
-                (isProf() || isAdmin() || isSysOp()) ? 
+                (isProf() || isAdmin() || isSysOp()) ? // Conditionally render different courses given the type of user
                 
                     
                     isSysOp() ? (<div>

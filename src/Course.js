@@ -15,13 +15,15 @@ async function get(url){
 
 
 function Course(props) {
+    // States to update necessary information.
     const [showTAs, setShowTAs] = useState(false);
     const [allUsers, setAllUsers] = useState([]);
     const [currentTAs, setCurrentTAs] = useState([]);
     const [courseTerm, setCourseTerm] = useState(["N/A"]);
-    useEffect(() => {
+    useEffect(() => { // Get all users initially
         get("https://ta-management-47.herokuapp.com/api/user").then(response => setAllUsers(response));
         setCurrentTAs(props.users);
+        // Convert term_month_year to readable value
         var term="";
         if (props.term) {
             if (props.term.charAt(0) == "1") {

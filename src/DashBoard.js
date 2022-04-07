@@ -8,7 +8,7 @@ import LinkLogin from "./LinkLogin";
 function DashBoard() {
     return(
         <div>
-            {isUser() ? 
+            {isUser() ? // Conditional rendering to display parts of dashboard accessible to this user
         <div className={styles.screen}>
         <div className={styles.box}>
             <div className={styles.board}>

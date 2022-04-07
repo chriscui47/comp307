@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import Register from "./Register";
 import Logout from "./Logout";
 import Login from "./Login";
 import DashBoard from "./DashBoard";
@@ -9,15 +8,13 @@ import TAAdministration from "./TAAdministration";
 import TAManagement from "./TAManagement";
 import TARate from "./TARate";
 import Register2 from "./Register2";
-import {
-  isUser, isTA, isAdmin, isSysOp, isProf
-} from "./Permissions.js";
 
 
 import {Navbar, Container, Nav} from 'react-bootstrap';
   
 export default function App() {
   return (
+    // Setting routing and creating navbar.
     <div>
         <Navbar bg="primary" variant="dark">
     <Container>
@@ -45,7 +42,7 @@ export default function App() {
     </div>
   );
 }
-
+// If not valid link.
 function NoMatch() {
   return (
     <div>

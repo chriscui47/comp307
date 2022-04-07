@@ -1,3 +1,5 @@
+// TAAdministration page
+
 import {isUser, isTA, isAdmin, isSysOp, isProf} from "./Permissions.js";
 import LinkLogin from "./LinkLogin.js";
 import CourseList from "./CourseList.js";

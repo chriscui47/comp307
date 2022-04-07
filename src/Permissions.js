@@ -1,4 +1,4 @@
-// Methods to determine the type & permissions of user.
+// Methods to determine the type & permissions of user given what is stored in local storage.
 
 export const isUser = () => {
     if (!localStorage.getItem("perm")) {

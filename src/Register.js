@@ -1,11 +1,8 @@
 import './App.css';
 import styles from './Register.module.css';
-import {Form, FormGroup, FormText, FormLabel
-, FormControl, Button} from 'react-bootstrap';
 import { Navigate } from "react-router-dom";
 import React, { useState } from 'react';
 import { useRef } from 'react';
-import CourseRegister from './CourseRegister';
 function Register() {
   const [registered, setRegistered] = useState(false);
   const userNameRef= useRef();

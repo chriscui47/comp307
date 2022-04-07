@@ -66,17 +66,19 @@ function Register() {
         const studentIDRef = useRef();
         const emailRef = useRef();
 
+        // Handle user selecting or unselecting a course.
         function addOrRemoveCourse(i) {
             if (selectedCourses.includes(i)) {
                 setSelectedCourses(selectedCourses.filter(el => el != i));
             }
             else {
-                var arr = [...courses];
+                var arr = [...selectedCourses];
                 arr.push(i);
                 setSelectedCourses(arr);
             }
         }
-
+        
+        // Handle user selecting or unselecting a permission.
         function getClicked(i) {
             if (permissions[i]==0) {
                 permissions[i]=1;
@@ -85,6 +87,7 @@ function Register() {
             permissions[i]=0;
         }
 
+        // Handle different cases in 'stage one' of registration
         function stageOne(e) {
             e.preventDefault();
             setStageOne(true);
@@ -132,15 +135,16 @@ function Register() {
                 role_name: verPerm
             }
 
-            console.log(userData);
-
             if (isStudent) {
-                // Add courses
-                var data = {
-                    user_id: jsonID.toString(),
-                    course_ids: JSON.stringify(courses)
+
+                post('http://ta-management-47.herokuapp.com/api/user/create', userData).then( // Create user
+                    resp =>  {post('https://ta-management-47.herokuapp.com/api/user/register', { // Register in courses
+                        user_id: resp.id,
+                        course_ids: JSON.stringify(selectedCourses)
+                    }); 
                 }
-                post('https://ta-management-47.herokuapp.com/api/user/register', data);
+                )
+               
             }
             else {
                 put("https://ta-management-47.herokuapp.com/api/user/edit", userData);

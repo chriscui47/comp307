@@ -1,8 +1,6 @@
 import styles from "./TA.module.css";
-import React, { useState } from 'react';
-import { useEffect } from 'react';
-import { Routes, Route, Link } from "react-router-dom";
 
+// Class for TA + feature of removing/adding a TA from a course
 async function post(url, data){
     let res = await fetch(url, {method: 'POST', body: JSON.stringify(data), 
     headers: {
@@ -26,7 +24,8 @@ function TA(props) {
             onClick={
                 function() {
                     
-                    if (registered) {
+                    if (registered) { // When selecting a course, register or unregister given on current
+                        // value of checkbox.
                         var data = {
                             user_id: props.id.toString(),
                             course_id: props.code.toString(),

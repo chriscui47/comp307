@@ -10,7 +10,7 @@ function TARate() {
             <h2>TA Ratings</h2> 
             {/* Display courses for this ID */}
             { (!isTA() && !isAdmin() && !isProf() && !isSysOp()) &&
-                <CourseList url={`https://ta-management-47.herokuapp.com/api/courses/user?student_id=${localStorage.getItem("id")}`} rate={true} rateIfTrueLogIfFalse={true} />
+                <CourseList url={`https://ta-management-47.herokuapp.com/api/courses/user/?student_id=${localStorage.getItem("id")}`} rate={true} rateIfTrueLogIfFalse={true} />
             }
             
         </div>
