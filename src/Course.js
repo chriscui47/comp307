@@ -23,6 +23,7 @@ function Course(props) {
     useEffect(() => { // Get all users initially
         get("https://ta-management-47.herokuapp.com/api/user").then(response => setAllUsers(response));
         setCurrentTAs(props.users);
+        console.log(props.users);
         // Convert term_month_year to readable value
         var term="";
         if (props.term) {
@@ -45,7 +46,7 @@ function Course(props) {
 
     return (
     <li>
-        
+        {/** Generic class features (information about course that will always need to be displayed) */}
         <div className={styles.course}>
         <div>
             <h3>Course Name: {props.name} </h3>
@@ -60,6 +61,7 @@ function Course(props) {
             <h3>Semester: {courseTerm} </h3> 
         </div>
 
+        {/** If editting a TA in a course */}
         {props.edit &&
         <button onClick={
             function() {
@@ -70,25 +72,34 @@ function Course(props) {
         }}>Edit TAs</button> 
         
         }
-
+        {/** If using performance log */}
         {props.log && 
             <button onClick={
                 function() {
                     setShowTAs(!showTAs);
-                    console.log("clicked");
+                    
             }}>Show TAs and Comments</button>
         }
+
+        {/** If using performance log */}
+        {props.rate && <button onClick={
+            function() {
+                setShowTAs(!showTAs);
+
+        }}>Show TAs</button> 
+            
+        }
+
+
        </div>
       
-        {(props.log || props.rate) && // For adding comments to TA log, or using the rate feature.
+        {(props.log) && // For adding comments to TA log, or using the rate feature.
         <div>
 
         {showTAs && <div className={styles.dropdown}>
        <ul>
-           { // Display different information for log or rate
-           props.log ? <div>Add a comment or view previously made comments. < br /></div>
-           : <div>Leave a rating!< br /></div>}
-       
+            Add a comment or view previously made comments. 
+           
         {
          // Here get list of TAs    
          props.users
@@ -99,6 +110,24 @@ function Course(props) {
         </ul>
        </div>}      
         </div>   
+        }
+
+        {props.rate && <div>
+            {
+                showTAs && <div className={styles.dropdown}>
+                    <ul>
+                        Add a rating! 
+                        {
+                            currentTAs
+                            .filter(user => user.role_name.charAt(2)==1) // Filter by TAs. 
+                            .map(user => <TAComments required key = {user.id} rate={true} id= {user.id} course_id = {props.id} fname={user.first_name} lname={user.last_name} />)
+                        }
+                    </ul>
+                    </div>
+            }
+
+        </div>
+
         }
 
         {props.edit && // For editing TA privledges (TA Administration)
