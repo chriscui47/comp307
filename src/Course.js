@@ -22,8 +22,7 @@ function Course(props) {
     const [courseTerm, setCourseTerm] = useState(["N/A"]);
     useEffect(() => { // Get all users initially
         get("https://ta-management-47.herokuapp.com/api/user").then(response => setAllUsers(response));
-        setCurrentTAs(props.users);
-        console.log(props.users);
+        get(`https://ta-management-47.herokuapp.com/api/user/course/?id=${props.id}&role=ta`).then(response => setCurrentTAs(response));
         // Convert term_month_year to readable value
         var term="";
         if (props.term) {
@@ -67,7 +66,7 @@ function Course(props) {
             function() {
                 setShowTAs(!showTAs);
                 // Update users in class here.
-                get(`https://ta-management-47.herokuapp.com/api/user/courses/?id=${props.id}`).then(response => setCurrentTAs(response));
+                get(`https://ta-management-47.herokuapp.com/api/user/course/?id=${props.id}&role=ta`).then(response => setCurrentTAs(response));
 
         }}>Edit TAs</button> 
         
@@ -77,6 +76,7 @@ function Course(props) {
             <button onClick={
                 function() {
                     setShowTAs(!showTAs);
+                   
                     
             }}>Show TAs and Comments</button>
         }
@@ -85,7 +85,7 @@ function Course(props) {
         {props.rate && <button onClick={
             function() {
                 setShowTAs(!showTAs);
-
+                get(`https://ta-management-47.herokuapp.com/api/user/course/?id=${props.id}&role=ta`).then(response => setCurrentTAs(response));
         }}>Show TAs</button> 
             
         }

@@ -2,6 +2,7 @@ import styles from './TAComments.module.css';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
+import {isUser, isTA, isAdmin, isSysOp, isProf} from "./Permissions.js";
 
 // Component to display a TA + feature to add a comment about a TA + ability to view all comments about this TA
 async function get(url){
@@ -25,7 +26,7 @@ function TAComments(props) {
         setTextArea(event.target.value)
       }
 
-      function handleSubmit(e) {
+      function handleSubmit(e) { // Handle submitting a form.
         e.preventDefault();
           if (textarea.length == 0) {
               return;
@@ -34,7 +35,7 @@ function TAComments(props) {
             course_id: props.course_id.toString(),
             user_id: props.id.toString(),
             comment: textarea,
-            isPerformance: props.rate ? true : false,
+            isPerformance: props.rate ? false : true,
             rating: props.rate ? rateRef.current.value : 0
         };
         console.log(commentData);
@@ -52,9 +53,14 @@ function TAComments(props) {
     return (
         <div> 
             <div className={styles.name}>{props.fname} {props.lname}</div>
-            {props.manage && <div>
-                
-            {comments.map(comment => <div className={styles.comment}>{comment.comment}</div>)}
+            {(props.manage || isTA() || isProf() || isAdmin() || isSysOp()) && // Distinguish between TA performance log & ratings
+            <div> 
+                <u>Previous remarks</u> <br />
+            {comments.filter(comment => props.manage ? comment.isPerformance : !comment.isPerformance).
+            map(comment => <div className={styles.comment}>Comment: {comment.comment} <br/> 
+            {!props.manage && <div> Rating: {comment.rating} 
+                </div>}
+             </div>)}
             <br />
             <br />
             </div>}
