@@ -1,6 +1,6 @@
 import LinkLogin from "./LinkLogin";
-import {isUser } from "./Permissions";
-import { CourseList } from "./CourseList";
+import {isUser, isTA, isAdmin, isProf, isSysOp } from "./Permissions";
+import CourseList from "./CourseList";
 
 function TARate() {
     return(
@@ -9,7 +9,10 @@ function TARate() {
         <div>
             <h2>TA Ratings</h2> 
             {/* Display courses for this ID */}
-            <CourseList url={`localhost:3000/api/courses/user?student_id=${localStorage.get("id")}`} rate={true} />
+            { (!isTA() && !isAdmin() && !isProf() && !isSysOp()) &&
+                <CourseList url={`https://ta-management-47.herokuapp.com/api/courses/user?student_id=${localStorage.getItem("id")}`} rate={true} rateIfTrueLogIfFalse={true} />
+            }
+            
         </div>
         :
         <LinkLogin />

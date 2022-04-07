@@ -12,7 +12,7 @@ function TAManagement() {
                         <div style={{textAlign: "center", width: "100%"}}>
                         <h1>TA Management</h1>
                         </div>
-                    <CourseList url="https://ta-management-47.herokuapp.com/api/courses" log={true}/> 
+                    <CourseList url="https://ta-management-47.herokuapp.com/api/courses" trueIfRateFalseIfLog={false} log={true}/> 
                     
                     
                     </div>)
@@ -24,7 +24,7 @@ function TAManagement() {
                         <h1>TA Management</h1>
                         </div>
                     
-                    <CourseList url={`https://ta-management-47.herokuapp.com/api/courses/professor?id=${localStorage.getItem("DBID")}`} trueIfRateFalseIfLog={true} log={true} /> 
+                    <CourseList url={`https://ta-management-47.herokuapp.com/api/courses/professor?id=${localStorage.getItem("DBID")}`} trueIfRateFalseIfLog={false} log={true} /> 
     
     
                     </div>

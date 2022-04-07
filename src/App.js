@@ -7,6 +7,8 @@ import DashBoard from "./DashBoard";
 import SysOp from "./SysOp";
 import TAAdministration from "./TAAdministration";
 import TAManagement from "./TAManagement";
+import TARate from "./TARate";
+import Register2 from "./Register2";
 import {
   isUser, isTA, isAdmin, isSysOp, isProf
 } from "./Permissions.js";
@@ -29,7 +31,7 @@ export default function App() {
   </Navbar>
       <Routes>
         <Route exact path="/" element={<Login />}></Route>
-          <Route path="register" element={<Register />
+          <Route path="register" element={<Register2 />
         } />
           <Route path="logout" element={<Logout />} />
           <Route path="dashboard" element = {
@@ -37,7 +39,7 @@ export default function App() {
           <Route path="sysop" element={<SysOp/>} />
           <Route path="*" element={<NoMatch />} />
           <Route path="manage" element={<TAManagement />} />
-          <Route path="rate" element={<div>Hello</div>} />
+          <Route path="rate" element={<TARate />} />
           <Route path="admin" element={<TAAdministration />} />
       </Routes>
     </div>

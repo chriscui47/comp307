@@ -4,10 +4,6 @@ import {
     isUser, isTA, isAdmin, isSysOp, isProf
 } from "./Permissions.js";
 import LinkLogin from "./LinkLogin";
-function canView(button) {
-
-}
-
 
 function DashBoard() {
     return(

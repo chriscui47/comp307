@@ -1,22 +1,63 @@
 import { useState } from 'react';
+import LinkLogin from './LinkLogin';
+import { Navigate } from "react-router-dom";
+import { useRef } from 'react';
+import { useEffect } from 'react';
+// Post request & await data => return json
+async function post(url, data){
+    let res = await fetch(url, {method: 'POST', body: JSON.stringify(data), 
+    headers: {
+      'Content-Type': 'application/json' // Denote we are sending JSON data.
+    }});  
+    if (res.status == 200) {
+        let json = await res.json();
+        return json;
+    }
+    else {
+        return null;
+    }
+  }
+
+  async function get(url){
+    let res = await fetch(url, {method: 'GET'});  
+    if (res.status == 200) {
+        let json = await res.json();
+        return json;
+    }
+}
+
+async function put(url, data){
+    let res = await fetch(url, {method: 'PUT', body: JSON.stringify(data), 
+    headers: {
+      'Content-Type': 'application/json' // Denote we are sending JSON data.
+    }});  
+    if (res.status == 200) {
+        let json = await res.json();
+        return json;
+    }
+    else {
+        return null;
+    }
+  }
+
 
 function Register() {
         var permissions = Array.from({length: 5}, (v, i) => 0); // Set all to zero.
-        
         // Checking what stage of registration depending on how user has interacted with page.
         const [stageOneCompleted, setStageOne] = useState(false);
         const [verified, setVerified] = useState(false);
         const [registered, setRegistered] = useState(false);
-        
         // Getting values of information.
         const [userName, setUserName] = useState("");
-        const [password, setPassword] = useState("");
         const [fname, setFname] = useState("");
         const [lname, setLname] = useState("");
-        const [studentID, setStudentID] = useState(-1);
+        const [studentID, setStudentID] = useState();
         const [email, setEmail] = useState("");
-
-
+        const [verPerm, setVerPerm] = useState("");
+        const [isStudent, setStudent] = useState(false);
+        const [courses, setCourses] = useState([]);
+        const [jsonID, setjsonID] = useState();
+        const [selectedCourses, setSelectedCourses] = useState([]);
         // References for getting fields filled out.
         const userNameRef= useRef();
         const passWordRef = useRef();
@@ -24,7 +65,17 @@ function Register() {
         const lastNameRef= useRef();
         const studentIDRef = useRef();
         const emailRef = useRef();
-        
+
+        function addOrRemoveCourse(i) {
+            if (selectedCourses.includes(i)) {
+                setSelectedCourses(selectedCourses.filter(el => el != i));
+            }
+            else {
+                var arr = [...courses];
+                arr.push(i);
+                setSelectedCourses(arr);
+            }
+        }
 
         function getClicked(i) {
             if (permissions[i]==0) {
@@ -36,49 +87,85 @@ function Register() {
 
         function stageOne(e) {
             e.preventDefault();
-            
-            
-
-            // If not Prof or TA
-            if (permissions[1] != 0 && permissions[2] != 0) {
-                // Set data and verified true
-                setVerified(true);
-            }       
-            // Check if in system.
-
-            if (verified) { // & data is not NULL. Set form.
-                // Set all values.
-            }
-           
             setStageOne(true);
+            setVerPerm(permissions.join(" "));
+            setUserName(userNameRef.current.value);
+            if (permissions[0]==1) { // Student
+                    setVerified(true);
+                    setStudent(true);
+
+                    return;
+                }
+            const data = {
+                username: userNameRef.current.value
+            }
+
+            post("https://ta-management-47.herokuapp.com/api/user/isitadded", data)
+            .then(resp => {
+                if (!resp) {
+                    return;
+                }
+                else {
+                    setFname(resp.first_name);
+                    setLname(resp.last_name);
+                    setStudentID(resp.student_id);
+                    setEmail(resp.email);
+                    setVerPerm(resp.role_name);
+                    setVerified(true);      
+                    setjsonID(resp.id);  
+                }
+            })
+
+           
         }
 
         function completeRegistration(e) {
             e.preventDefault();
 
+            const userData = {
+                first_name: firstNameRef.current.value,
+                last_name: lastNameRef.current.value,
+                email: emailRef.current.value,
+                student_id: studentIDRef.current.value,
+                username: userName,
+                password: passWordRef.current.value,
+                role_name: verPerm
+            }
 
-            // Send data to server to add user.
-            // If good, then go to login.
+            console.log(userData);
 
-            setRegistration(true);
+            if (isStudent) {
+                // Add courses
+                var data = {
+                    user_id: jsonID.toString(),
+                    course_ids: JSON.stringify(courses)
+                }
+                post('https://ta-management-47.herokuapp.com/api/user/register', data);
+            }
+            else {
+                put("https://ta-management-47.herokuapp.com/api/user/edit", userData);
+            }
+
+            setRegistered(true);
         }
+        // Set courses.
+        useEffect(() => {
+            get("https://ta-management-47.herokuapp.com/api/courses").then(response => {setCourses(response)} );
+          }, []); 
     return (
+        
         registered ? (<Navigate push to="/"/>) :
-        <div>
+        <div style={{margin: 10}}>
             {/* In stage one*/ }
             {!stageOneCompleted && <div>
-            Enter Username and roles. < br />
+            Enter username, and select student if you wish to enroll solely as a student. < br />
             <form onSubmit={stageOne}>
             Username <br />
             <input type="text" required id='username' ref={userNameRef}></input> <br />
+
             
-
             <input type="checkbox" id="student" name="student" onClick={() => getClicked(0)}></input> Student<br />
-            <input type="checkbox" id="ta" name="ta" onClick={() => getClicked(1)}></input> TA <br />
-            <input type="checkbox" id="prof" name="prof" onClick={() => getClicked(2)}></input> Professor<br />
-            <input type="checkbox" id="admin" name="admin" onClick={() => getClicked(3)}></input> TA Administrator<br />
-            <input type="checkbox" id="sysop" name="sysop" onClick={() => getClicked(4)}></input> System Operator<br />
-
+            
             <br />
             <button>Continue Registration</button>
             </form>
@@ -92,19 +179,35 @@ function Register() {
             {
                 (stageOneCompleted && verified) && // Here, allow to finish registration
                 <div> 
-                    Hello, {userNameRef.current.value}, please finish your registration/verify this information. <br />
+                    Hi, <strong>{userName}</strong>! Please finish your registration or verify your information. <br />
                     <form onSubmit={completeRegistration}>
                         First Name <br />
-                        <input type="text" required id='fname' ref={firstNameRef}>{fname}</input> <br />
+                        <input type="text" required id='fname' ref={firstNameRef} defaultValue={fname}></input> <br />
                         Last Name <br />
-                        <input type="text" required id='lname' ref={lastNameRef}>{lname}</input> <br />
+                        <input type="text" required id='lname' ref={lastNameRef} defaultValue = {lname}></input> <br />
                         Student ID <br />
-                        <input type="number" required id='id' ref={studentIDRef}>{studentID}</input> <br />
+                        <input type="number" required id='id' ref={studentIDRef} defaultValue ={studentID}></input> <br />
                         Password <br />
                         <input type="text" required id='password' ref={passWordRef}></input>
                         <br />
                         Email <br />
-                        <input type="text" required id='email' ref={emailRef}>{email}</input> <br />
+                        <input type="text" required id='email' ref={emailRef} defaultValue={email}></input> <br />
+
+                        {/** If student, show all courses, ask to register. Then, update accordingly in registration. */
+                            isStudent &&
+                            <div>
+                                
+                                    {courses.map(course =>
+                                    <div>
+                                        {course.course_name} <br />
+                                        <input type="checkbox" id={course.id} onClick = {() => addOrRemoveCourse(course.id)}></input>
+                                    </div> 
+                                        
+                                    )}
+                                
+
+                            </div>
+                        }
 
                         <button>Complete Registration</button>
                     </form>

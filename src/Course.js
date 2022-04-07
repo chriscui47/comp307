@@ -73,11 +73,12 @@ function Course(props) {
             <button onClick={
                 function() {
                     setShowTAs(!showTAs);
+                    console.log("clicked");
             }}>Show TAs and Comments</button>
         }
        </div>
       
-        {props.log || props.rate && // For adding comments to TA log, or using the rate feature.
+        {(props.log || props.rate) && // For adding comments to TA log, or using the rate feature.
         <div>
 
         {showTAs && <div className={styles.dropdown}>
