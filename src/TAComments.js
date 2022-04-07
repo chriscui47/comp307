@@ -16,7 +16,7 @@ function TAComments(props) {
     const [comments, setComments] = useState([]);
     const [textarea, setTextArea] = useState("");
     useEffect(() => {
-        get(`https://ta-management-47.herokuapp.com/api/course/user/comment?course_id=${props.course_id}&user_id=${props.id}`).then(response => {setComments(response)} );
+        get(`https://ta-management-47.herokuapp.com/api/course/user/comment?course_id=${props.course_id}&user_id=${props.id}`).then(response => {setComments(response); console.log(response)} );
       }, []); 
     
       const handleChange = (event) => {
@@ -31,8 +31,12 @@ function TAComments(props) {
         const commentData = {
             course_id: props.course_id.toString(),
             user_id: props.id.toString(),
-            comment: textarea
+            comment: textarea,
+            isPerformance: true,
+            rating: '0'
         };
+        console.log(commentData);
+        console.log(JSON.stringify(commentData));
         fetch("https://ta-management-47.herokuapp.com/api/comment/create", {
             // Configure
              method: 'POST',
@@ -40,7 +44,7 @@ function TAComments(props) {
             headers: {
             'Content-Type': 'application/json' // Denote we are sending JSON data.
             }
-        }).then(resp => window.location.reload(false));
+        }).then(resp => console.log(resp)); // Reload here instead
     }
 
     return (

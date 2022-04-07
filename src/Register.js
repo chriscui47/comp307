@@ -29,7 +29,6 @@ function Register() {
     event.preventDefault();
     console.log(permissions);
     const enteredUserName = userNameRef.current.value;
-    const enteredPassWord = passWordRef.current.value;
     const enteredfName = firstNameRef.current.value;
     const enteredlName = lastNameRef.current.value;
     const enteredStudentID = studentIDRef.current.value;
@@ -40,7 +39,7 @@ function Register() {
       first_name: enteredfName,
       last_name: enteredlName,
       username: enteredUserName,
-      password: "",
+      password: "test",
       student_id: enteredStudentID,
       role_name: enteredUserType,
       email: enteredEmailRef

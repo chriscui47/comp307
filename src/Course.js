@@ -77,12 +77,15 @@ function Course(props) {
         }
        </div>
       
-        {props.log && // For adding comments to TA log
+        {props.log || props.rate && // For adding comments to TA log, or using the rate feature.
         <div>
 
         {showTAs && <div className={styles.dropdown}>
        <ul>
-       Add a comment or view previously made comments. < br />
+           { // Display different information for log or rate
+           props.log ? <div>Add a comment or view previously made comments. < br /></div>
+           : <div>Leave a rating!< br /></div>}
+       
         {
          // Here get list of TAs    
          props.users
@@ -113,6 +116,8 @@ function Course(props) {
        </div>}
         </div>
         }
+
+    
         
     </li>);
     

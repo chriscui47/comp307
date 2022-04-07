@@ -21,12 +21,12 @@ function CourseList(props) {
         <section className={styles.dashboard}>     
             <ul className={styles.courselist}>
 
-        {props.log && data.map(course => <Course required key = {course.id} name={course.course_name} users = {course.users} log = {props.log} id={course.id} code = {course.course_num} professor = {course.professor} term = {course.term_month_year} />)}
+        { // If using a course list for purpose of using the performance log, indicate so.
+        props.trueIfRateFalseIfLog && data.map(course => <Course required key = {course.id} name={course.course_name} users = {course.users} log = {props.log} rate = {props.rate} rateOrLog = {props.trueIfRateFalseIfLog} id={course.id} code = {course.course_num} professor = {course.professor} term = {course.term_month_year} />)}
 
-        {props.edit && data.map(course => <Course required key = {course.id} name={course.course_name} users = {course.users} edit = {props.edit} id={course.id} code = {course.course_num} professor = {course.professor}  term = {course.term_month_year} />)}
-        
-        {/** Add logic here for TA rate */}
-        
+        { // If using course list for editing TAs
+        props.edit && data.map(course => <Course required key = {course.id} name={course.course_name} users = {course.users} edit = {props.edit} id={course.id} code = {course.course_num} professor = {course.professor}  term = {course.term_month_year} />)}
+     
        
         
         </ul>
