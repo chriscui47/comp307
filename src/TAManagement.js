@@ -1,7 +1,6 @@
 import {isUser, isTA, isAdmin, isSysOp, isProf} from "./Permissions.js";
 import CourseList from "./CourseList.js";
 import LinkLogin from "./LinkLogin.js";
-import CourseListTA from "./CourseListTA.js";
 function TAManagement() {
     return(
         <div>
@@ -15,7 +14,7 @@ function TAManagement() {
                         </div>
                     <CourseList url="https://ta-management-47.herokuapp.com/api/courses" log={true}/> 
                     
-    
+                    
                     </div>)
 
                     :

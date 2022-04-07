@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { Routes, Route, Link } from "react-router-dom";
 
 async function post(url, data){
-    console.log(JSON.stringify(data));
     let res = await fetch(url, {method: 'POST', body: JSON.stringify(data), 
     headers: {
       'Content-Type': 'application/json' // Denote we are sending JSON data.
@@ -26,15 +25,24 @@ function TA(props) {
             
             onClick={
                 function() {
-                    var data = {
-                        user_id: props.id.toString(),
-                        course_id: [props.code.toString()]
-                    }
+                    
                     if (registered) {
+                        var data = {
+                            user_id: props.id.toString(),
+                            course_id: props.code.toString(),
+                            headers: {
+                                'Content-Type': 'application/json' // Denote we are sending JSON data.
+                                }
+                        }
                         registered=false;
                         post('https://ta-management-47.herokuapp.com/api/user/unregister', data);
                     }
                     else {
+
+                        var data = {
+                            user_id: props.id.toString(),
+                            course_ids: JSON.stringify([props.code])
+                        }
                         registered=true;
                         post('https://ta-management-47.herokuapp.com/api/user/register', data);   
                     }

@@ -40,7 +40,7 @@ function Register() {
       first_name: enteredfName,
       last_name: enteredlName,
       username: enteredUserName,
-      password: enteredPassWord,
+      password: "",
       student_id: enteredStudentID,
       role_name: enteredUserType,
       email: enteredEmailRef
@@ -54,10 +54,8 @@ function Register() {
        'Content-Type': 'application/json' // Denote we are sending JSON data.
      }
 
-   }).then(
-     // Add logic
-     response => setRegistered(true)
-     ); 
+   }).then(resp => window.location.reload(false));
+   
   }
 
   return (
@@ -72,9 +70,6 @@ function Register() {
         <input type="number" required id='id' ref={studentIDRef}></input> <br />
         Username <br />
         <input type="text" required id='username' ref={userNameRef}></input> <br />
-        Password <br />
-        <input type="text" required id='password' ref={passWordRef}></input>
-        <br />
         Email <br />
         <input type="text" required id='email' ref={emailRef}></input> <br />
         Select Role(s)

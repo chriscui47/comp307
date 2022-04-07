@@ -9,7 +9,7 @@ function canView(button) {
 }
 
 
-function Dash() {
+function DashBoard() {
     return(
         <div>
             {isUser() ? 
@@ -27,4 +27,4 @@ function Dash() {
         </div>
     );
 }
-export default Dash;
+export default DashBoard;

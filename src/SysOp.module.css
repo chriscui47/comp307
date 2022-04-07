@@ -1,7 +1,5 @@
 .screen {
     display: grid;
-    grid-template-columns: 1fr;
-    justify-content: center;
 }
 
 .child {
@@ -20,9 +18,18 @@
 .reg {
     border: 1px solid black;
 }
-
 @media only screen and (min-width: 900px) {
     .screen {
         grid-template-columns: 1fr 1fr 1fr;
+        height: 1400px;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .screen {
+    grid-template-columns: 1fr;
+    justify-content: center;
+    min-height: 1400px;
+    max-height: auto;
     }
 }

@@ -1,9 +1,8 @@
 import './App.css';
 import styles from './Register.module.css';
-import {Form, FormGroup, FormText, FormLabel
-, FormControl, Button} from 'react-bootstrap';
 import React, { useState } from 'react';
 import { useRef } from 'react';
+import { useEffect } from 'react';
 function CourseMaker() {
 
   const courseNumRef= useRef();
@@ -11,7 +10,7 @@ function CourseMaker() {
   const termRef = useRef();
   const monthRef = useRef();
   const yearRef = useRef();
-  const nameRef = useRef();
+  const profRef = useRef();
   function submitHandler(event) {
     event.preventDefault();
 
@@ -20,15 +19,15 @@ function CourseMaker() {
     const term = termRef.current.value;
     const month = monthRef.current.value;
     const year = yearRef.current.value;
-    const name = nameRef.current.value;
+    const prof = profRef.current.value;
 
     const courseData = {
       term_month_year: term.concat(" ", month, " ", year),
       course_num: courseNum,
       course_name: courseName,
-      instructor_assigned_name: name
+      fk_professor: prof
     }
-    console.log(courseData);
+    
 
     // Send to server to store in DB. (HTTP Request)
    fetch("https://ta-management-47.herokuapp.com/api/course/create", {
@@ -40,17 +39,32 @@ function CourseMaker() {
      }
 
    }).then(
-     // Add logic
-     response => console.log(response)
+     resp => window.location.reload(false)
      ); 
   }
 
+  // Function to async return courses from database.
+  async function get(url){
+    let res = await fetch(url, {method: 'GET'});  
+    if (res.status == 200) {
+        let json = await res.json();
+        return json;
+    }
+  }
+
+
+    const [allUsers, setAllUsers] = useState([]);
+    useEffect(() => {
+        get("https://ta-management-47.herokuapp.com/api/user").then(response => setAllUsers(response));     
+    }, []); 
+
   return (
+
     <div className={styles.register}>
       <form onSubmit={submitHandler}>
           
         Course Number <br />
-        <input type="text" required id='number' ref={courseNumRef}></input> <br />
+        <input type="number" required id='number' ref={courseNumRef}></input> <br />
         <br />
         Course Name <br />
         <input type="text" required id='name' ref={courseNameRef}></input> <br />
@@ -80,11 +94,20 @@ function CourseMaker() {
         </select>
         < br />
         Year <br />
-        <input type="text" required id="year" ref={yearRef}></input> <br/>
+        <input type="number" required id="year" ref={yearRef}></input> <br/>
     
         Instructor Name <br />
-        <input type="text" required id='name' ref={nameRef}></input> <br />
-       
+        <div>
+        <select required id = 'prof' ref = {profRef}>
+          {allUsers
+          .filter(user => user.role_name.charAt(4)==1)
+          .map(prof => 
+            <option required key = {prof.id} value={prof.id}>
+              {prof.last_name}
+            </option>
+            )}
+        </select>
+        </div>
       < br />
       <br />
         <button onSubmit={submitHandler}>Create Course</button>

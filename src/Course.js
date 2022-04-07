@@ -16,25 +16,46 @@ async function get(url){
 
 function Course(props) {
     const [showTAs, setShowTAs] = useState(false);
-    const [allUsers, setAllUsers] = useState([])
-    const [currentTAs, setCurrentTAs] = useState([])
+    const [allUsers, setAllUsers] = useState([]);
+    const [currentTAs, setCurrentTAs] = useState([]);
+    const [courseTerm, setCourseTerm] = useState(["N/A"]);
     useEffect(() => {
-        get("https://ta-management-47.herokuapp.com/api/user").then(response => setAllUsers(response));;
+        get("https://ta-management-47.herokuapp.com/api/user").then(response => setAllUsers(response));
         setCurrentTAs(props.users);
+        var term="";
+        if (props.term) {
+            if (props.term.charAt(0) == "1") {
+                term="Fall";
+            }
+
+            else if (props.term.charAt(0) == "2") {
+                term="Winter";
+            }
+
+            else if (props.term.charAt(0) == "3") {
+                term="Summer";
+            }
+            setCourseTerm(term.concat(" ", props.term.substr(-4)));
+        }
+        
+        
     }, []); 
 
     return (
     <li>
         
-        <button className={styles.course}>
+        <div className={styles.course}>
+        <div>
+            <h3>Course Name: {props.name} </h3>
+        </div>
         <div>
             <h3>Course Code: {props.code} </h3>
         </div>
         <div>
-            <h3>Professor: {props.professor}</h3> 
+            <h3>Professor: {props.professor ? props.professor.last_name : "N/A"}</h3> 
         </div>
         <div>
-            <h3>Semester: {props.term} </h3> 
+            <h3>Semester: {courseTerm} </h3> 
         </div>
 
         {props.edit &&
@@ -54,9 +75,9 @@ function Course(props) {
                     setShowTAs(!showTAs);
             }}>Show TAs and Comments</button>
         }
-       </button>
+       </div>
       
-        {props.log && // If log
+        {props.log && // For adding comments to TA log
         <div>
 
         {showTAs && <div className={styles.dropdown}>
@@ -74,7 +95,7 @@ function Course(props) {
         </div>   
         }
 
-        {props.edit &&
+        {props.edit && // For editing TA privledges (TA Administration)
             <div>
                 
 

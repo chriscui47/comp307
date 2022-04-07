@@ -3,7 +3,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import Register from "./Register";
 import Logout from "./Logout";
 import Login from "./Login";
-import Dash from "./Dash";
+import DashBoard from "./DashBoard";
 import SysOp from "./SysOp";
 import TAAdministration from "./TAAdministration";
 import TAManagement from "./TAManagement";
@@ -33,7 +33,7 @@ export default function App() {
         } />
           <Route path="logout" element={<Logout />} />
           <Route path="dashboard" element = {
-          <Dash/>} />
+          <DashBoard/>} />
           <Route path="sysop" element={<SysOp/>} />
           <Route path="*" element={<NoMatch />} />
           <Route path="manage" element={<TAManagement />} />
