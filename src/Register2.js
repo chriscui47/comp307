@@ -3,42 +3,7 @@ import LinkLogin from './LinkLogin';
 import { Navigate } from "react-router-dom";
 import { useRef } from 'react';
 import { useEffect } from 'react';
-// Post request & await data => return json
-async function post(url, data){
-    let res = await fetch(url, {method: 'POST', body: JSON.stringify(data), 
-    headers: {
-      'Content-Type': 'application/json' // Denote we are sending JSON data.
-    }});  
-    if (res.status == 200) {
-        let json = await res.json();
-        return json;
-    }
-    else {
-        return null;
-    }
-  }
-
-  async function get(url){
-    let res = await fetch(url, {method: 'GET'});  
-    if (res.status == 200) {
-        let json = await res.json();
-        return json;
-    }
-}
-
-async function put(url, data){
-    let res = await fetch(url, {method: 'PUT', body: JSON.stringify(data), 
-    headers: {
-      'Content-Type': 'application/json' // Denote we are sending JSON data.
-    }});  
-    if (res.status == 200) {
-        let json = await res.json();
-        return json;
-    }
-    else {
-        return null;
-    }
-  }
+import { get, post, put } from './Helper';
 
 
 function Register() {

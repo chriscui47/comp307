@@ -1,23 +1,9 @@
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-
+import { put } from "./Helper";
 function User(props) {
-
-    async function put(url, data){
-        let res = await fetch(url, {method: 'PUT', body: JSON.stringify(data), 
-        headers: {
-          'Content-Type': 'application/json' // Denote we are sending JSON data.
-        }});  
-        if (res.status == 200) {
-            let json = await res.json();
-            return json;
-        }
-        else {
-            return null;
-        }
-      }
-    
+   
 
     const[showDetails, setShow] = useState(false);
 
@@ -76,6 +62,8 @@ function User(props) {
                     <input type="checkbox" id="prof" name="prof" defaultChecked={props.u.role_name.at(4)==1}  onClick={() => getClicked(2)}></input> Professor<br />
                     <input type="checkbox" id="admin" name="admin" defaultChecked={props.u.role_name.at(6)==1}  onClick={() => getClicked(3)}></input> TA Administrator<br />
                     <input type="checkbox" id="sysop" name="sysop" defaultChecked={props.u.role_name.at(8)==1}  onClick={() => getClicked(4)}></input> System Operator<br />
+                
+                   
                     <button>Submit Changes</button>
            </form>
            <br />

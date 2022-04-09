@@ -1,14 +1,7 @@
 
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-
-async function get(url){
-    let res = await fetch(url, {method: 'GET'});  
-    if (res.status == 200) {
-        let json = await res.json();
-        return json;
-    }
-}
+import { get } from "./Helper";
 
 // Append a course id to courses list
 function append(courses, id) {

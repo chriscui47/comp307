@@ -3,15 +3,9 @@ import TA from './TA.js';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import TAComments from './TAComments';
+import {get} from "./Helper";
 
-// Function to async return courses from database.
-async function get(url){
-    let res = await fetch(url, {method: 'GET'});  
-    if (res.status == 200) {
-        let json = await res.json();
-        return json;
-    }
-}
+
 
 
 function Course(props) {

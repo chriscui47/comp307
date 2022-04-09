@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
+import { get } from "./Helper";
 
 function DeleteUser() {
 
@@ -18,13 +19,6 @@ function DeleteUser() {
     }
   }
 
-  async function get(url){
-    let res = await fetch(url, {method: 'GET'});  
-    if (res.status == 200) {
-        let json = await res.json();
-        return json;
-    }
-}
 
   function submitHandler(e) {
       e.preventDefault();

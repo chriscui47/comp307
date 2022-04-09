@@ -2,17 +2,9 @@ import styles from './TAComments.module.css';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
-import {isUser, isTA, isAdmin, isSysOp, isProf} from "./Permissions.js";
-
+import { isTA, isAdmin, isSysOp, isProf} from "./Permissions.js";
+import { get } from "./Helper";
 // Component to display a TA + feature to add a comment about a TA + ability to view all comments about this TA
-async function get(url){
-    let res = await fetch(url, {method: 'GET'});  
-    if (res.status == 200) {
-        let json = await res.json();
-        return json;
-    }
-}
-
 
 function TAComments(props) {
     const [comments, setComments] = useState([]);
@@ -38,8 +30,6 @@ function TAComments(props) {
             isPerformance: props.rate ? false : true,
             rating: props.rate ? rateRef.current.value : 0
         };
-        console.log(commentData);
-        console.log(JSON.stringify(commentData));
         fetch("https://ta-management-47.herokuapp.com/api/comment/create", {
             // Configure
              method: 'POST',
