@@ -125,6 +125,7 @@ function Register() {
         
         registered ? (<Navigate push to="/"/>) :
         <div style={{margin: 10}}>
+            {localStorage.clear()} {/** Clear local storage upon logging out. */}
             {/* In stage one*/ }
             {!stageOneCompleted && <div>
             Enter username, and select student if you wish to enroll solely as a student. < br />
