@@ -44,17 +44,17 @@ function User(props) {
             student_id: studentIDRef.current.value,
             username: userNameRef.current.value,
             password: passWordRef.current.value,
-            role_name: perm
+            role_name: perm.toString()
         }
         console.log(userData);
-        put("https://ta-management-47.herokuapp.com/api/user/edit", userData);
+        put("https://ta-management-47.herokuapp.com/api/user/edit", userData).then(resp => window.location.reload(false));
 
 
     }
 
     return(
         <li>
-            <button onClick={() => setShow(!showDetails)}>{props.u.first_name} {props.u.last_name}</button>
+            <button style={{width: "250px", padding: "5px", margin: "5px"}}onClick={() => setShow(!showDetails)}>{props.u.first_name} {props.u.last_name}</button>
             { showDetails && <div>
            <form onSubmit={submitHandler}>
                     First Name <br />
@@ -78,7 +78,7 @@ function User(props) {
                     <input type="checkbox" id="sysop" name="sysop" defaultChecked={props.u.role_name.at(8)==1}  onClick={() => getClicked(4)}></input> System Operator<br />
                     <button>Submit Changes</button>
            </form>
-           <br /> <br />
+           <br />
            </div>
             }
         </li>

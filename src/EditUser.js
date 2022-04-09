@@ -22,7 +22,7 @@ function EditUser() {
     return(
         <div>
             
-                <ul>
+                <ul style={{listStyleType: "none"}}>
                     {
                 users.map(
                     user =>
