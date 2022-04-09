@@ -4,11 +4,14 @@ import LinkLogin from "./LinkLogin";
 import Register from "./Register";
 import styles from "./SysOp.module.css";
 import React, { useState } from 'react';
+import FileUpload from "./FileUpload";
+import DeleteUser from "./DeleteUser";
+import EditUser from "./EditUser";
 
 function SysOp() {
     const [showRegister, setRegister] = useState(false);
     const [showDelete, setDelete] = useState(false);
-    const [showManual, setManual] = useState(false);
+    const [showEdit, setShowEdit] = useState(false);
     return (
         
         <div>
@@ -21,8 +24,7 @@ function SysOp() {
 
                 </div>
                 <div className={styles.child}>
-                    <h2>Import Prof and Course</h2>
-                   
+                   <FileUpload />
                 </div>
                 <div className={styles.child}>
                     <button className={styles.button} onClick={
@@ -48,9 +50,18 @@ function SysOp() {
                     }><h2>Remove a User</h2></button>
                     {showDelete && 
                     <div className={styles.reg}>
-                    
-                        Remove.
+                        <DeleteUser />
                     </div>}
+                   <button className={styles.button} onClick = {() => setShowEdit(!showEdit)}>
+                   <h2>Edit a User</h2>
+                   </button>
+                    {showEdit &&
+                        <div className={styles.reg}>
+                            <EditUser />
+
+                        </div>
+                    }
+
                 </div>
 
                 

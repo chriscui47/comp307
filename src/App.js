@@ -8,6 +8,7 @@ import TAAdministration from "./TAAdministration";
 import TAManagement from "./TAManagement";
 import TARate from "./TARate";
 import Register2 from "./Register2";
+import FileUpload from "./FileUpload";
 
 
 import {Navbar, Container, Nav} from 'react-bootstrap';
