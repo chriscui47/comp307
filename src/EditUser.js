@@ -9,7 +9,7 @@ function EditUser() {
 
     const [users, setAllUsers] = useState([]);
     useEffect(() => {
-        get("https://ta-management-47.herokuapp.com/api/user").then(response => setAllUsers(response));     
+        get("https://ta-management-47.herokuapp.com/api/user").then(response => {setAllUsers(response); console.log(response)});     
     
     }, []); 
 

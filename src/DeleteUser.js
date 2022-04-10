@@ -25,7 +25,6 @@ function DeleteUser() {
       const data= {
           id: userRef.current.value
       }
-      console.log(data);
       del('https://ta-management-47.herokuapp.com/api/user/delete', data).then(resp => window.location.reload(false));
   }
 

@@ -61,7 +61,7 @@ function Course(props) {
             function() {
                 setShowTAs(!showTAs);
                 // Update users in class here.
-                get(`https://ta-management-47.herokuapp.com/api/user/course/?id=${props.id}&isStudent=false`).then(response => {setCurrentTAs(response)});
+                get(`https://ta-management-47.herokuapp.com/api/user/course/?id=${props.id}&isStudent=false`).then(response => {setCurrentTAs(response); console.log(response)});
 
         }}>Edit TAs</button> 
         
@@ -130,15 +130,21 @@ function Course(props) {
                 
 
         {showTAs && <div className={styles.dropdown}>
-        <div className={styles.msg}>Note TAs that are selected are currently TAs in {props.code}. <br /> Check/uncheck to change whether a TA is registered in this course.</div>
+        <div className={styles.msg}> Register/unregister TAs for {props.code}. If registering, please indicate hours below.</div>
        <ul>
-        {
-         // Here get list of TAs    
-         allUsers
-         .filter(user => user.role_name.charAt(2)==1)
-         .map(user => <TA required key = {user.id} hours = {user.hours} id = {user.id} code = {props.id} fname={user.first_name} lname={user.last_name} 
-             checked={currentTAs.some(el => el.id == user.id)}/>)
+
+       { // All TAs registered
+        currentTAs.map(user => <TA required key = {user.id} id = {user.id} code = {props.id} fname={user.first_name} lname={user.last_name} 
+            hours = {user.registration.hours} checked={true}/>)
         }
+        {
+         // All TAs not currently registers   
+         allUsers
+         .filter(user => user.role_name.charAt(2)==1 && !currentTAs.some(el => el.id == user.id))
+         .map(user => <TA required key = {user.id} id = {user.id} code = {props.id} fname={user.first_name} lname={user.last_name} 
+             checked={false}/>)
+        }
+        
         </ul>
        </div>}
         </div>
