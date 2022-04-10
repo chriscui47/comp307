@@ -106,7 +106,8 @@ function Register() {
                     resp =>  {post('https://ta-management-47.herokuapp.com/api/user/register', { // Register in courses
                         user_id: resp.id,
                         course_ids: JSON.stringify(selectedCourses),
-                        isStudent: true
+                        isStudent: "true",
+                        hours: 0
                     }); 
                 }
                 )
