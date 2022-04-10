@@ -15,7 +15,7 @@ function Course(props) {
     const [currentTAs, setCurrentTAs] = useState([]);
     const [courseTerm, setCourseTerm] = useState(["N/A"]);
     useEffect(() => { // Get all users initially
-        get("https://ta-management-47.herokuapp.com/api/user").then(response => {setAllUsers(response); console.log(response)});
+        get("https://ta-management-47.herokuapp.com/api/user").then(response => {setAllUsers(response)});
         get(`https://ta-management-47.herokuapp.com/api/user/course/?id=${props.id}&isStudent=false`).then(response => {setCurrentTAs(response)});
         console.log(currentTAs);
         // Convert term_month_year to readable value
@@ -61,7 +61,7 @@ function Course(props) {
             function() {
                 setShowTAs(!showTAs);
                 // Update users in class here.
-                get(`https://ta-management-47.herokuapp.com/api/user/course/?id=${props.id}&isStudent=false`).then(response => {setCurrentTAs(response); console.log(response)});
+                get(`https://ta-management-47.herokuapp.com/api/user/course/?id=${props.id}&isStudent=false`).then(response => {setCurrentTAs(response)});
 
         }}>Edit TAs</button> 
         
@@ -137,7 +137,7 @@ function Course(props) {
          allUsers
          .filter(user => user.role_name.charAt(2)==1)
          .map(user => <TA required key = {user.id} hours = {user.hours} id = {user.id} code = {props.id} fname={user.first_name} lname={user.last_name} 
-             checked={Array.from(currentTAs).some(el => el.id == user.id)}/>)
+             checked={currentTAs.some(el => el.id == user.id)}/>)
         }
         </ul>
        </div>}
