@@ -9,7 +9,7 @@ import { get } from "./Helper";
 function CourseList(props) {
     const [data, setData] = useState([]);
     useEffect(() => {
-        get(props.url).then(response => {setData(response); console.log("hello"); console.log(response); console.log("hello"); });
+        get(props.url).then(response => {setData(response) });
       }, []); 
     return (     // CourseTA, CourseLog
         <section className={styles.dashboard}>     

@@ -15,8 +15,9 @@ function Course(props) {
     const [currentTAs, setCurrentTAs] = useState([]);
     const [courseTerm, setCourseTerm] = useState(["N/A"]);
     useEffect(() => { // Get all users initially
-        get("https://ta-management-47.herokuapp.com/api/user").then(response => setAllUsers(response));
-        get(`https://ta-management-47.herokuapp.com/api/user/course/?id=${props.id}&role=ta`).then(response => setCurrentTAs(response));
+        get("https://ta-management-47.herokuapp.com/api/user").then(response => {setAllUsers(response); console.log(response)});
+        get(`https://ta-management-47.herokuapp.com/api/user/course/?id=${props.id}&isStudent=false`).then(response => {setCurrentTAs(response)});
+        console.log(currentTAs);
         // Convert term_month_year to readable value
         var term="";
         if (props.term) {
@@ -60,7 +61,7 @@ function Course(props) {
             function() {
                 setShowTAs(!showTAs);
                 // Update users in class here.
-                get(`https://ta-management-47.herokuapp.com/api/user/course/?id=${props.id}&role=ta`).then(response => setCurrentTAs(response));
+                get(`https://ta-management-47.herokuapp.com/api/user/course/?id=${props.id}&isStudent=false`).then(response => {setCurrentTAs(response); console.log(response)});
 
         }}>Edit TAs</button> 
         
@@ -79,7 +80,7 @@ function Course(props) {
         {props.rate && <button onClick={
             function() {
                 setShowTAs(!showTAs);
-                get(`https://ta-management-47.herokuapp.com/api/user/course/?id=${props.id}&role=ta`).then(response => setCurrentTAs(response));
+                get(`https://ta-management-47.herokuapp.com/api/user/course/?id=${props.id}&isStudent=false`).then(response => {setCurrentTAs(response)});
         }}>Show TAs</button> 
             
         }
@@ -135,8 +136,8 @@ function Course(props) {
          // Here get list of TAs    
          allUsers
          .filter(user => user.role_name.charAt(2)==1)
-         .map(user => <TA required key = {user.id} id = {user.id} code = {props.id} fname={user.first_name} lname={user.last_name} 
-             checked={currentTAs.some(el => el.id == user.id)}/>)
+         .map(user => <TA required key = {user.id} hours = {user.hours} id = {user.id} code = {props.id} fname={user.first_name} lname={user.last_name} 
+             checked={Array.from(currentTAs).some(el => el.id == user.id)}/>)
         }
         </ul>
        </div>}

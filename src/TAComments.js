@@ -11,7 +11,7 @@ function TAComments(props) {
     const [textarea, setTextArea] = useState("");
     const rateRef = useRef();
     useEffect(() => {
-        get(`https://ta-management-47.herokuapp.com/api/course/user/comment?course_id=${props.course_id}&user_id=${props.id}`).then(response => {setComments(response); console.log(response)} );
+        get(`https://ta-management-47.herokuapp.com/api/course/user/comment?course_id=${props.course_id}&user_id=${props.id}`).then(response => {setComments(response)} );
       }, []); 
     
       const handleChange = (event) => {
