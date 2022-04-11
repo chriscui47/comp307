@@ -39,7 +39,7 @@ function User(props) {
             password: passWordRef.current.value,
             role_name: perm.toString()
         }
-        console.log(userData);
+        
         
         put("https://ta-management-47.herokuapp.com/api/user/edit", userData)
         .then(resp => window.location.reload(false));

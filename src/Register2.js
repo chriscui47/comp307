@@ -103,21 +103,31 @@ function Register() {
             if (isStudent) {
 
                 post('https://ta-management-47.herokuapp.com/api/user/create', userData).then( // Create user
-                    resp =>  {post('https://ta-management-47.herokuapp.com/api/user/register', { // Register in courses
-                        user_id: resp.id,
-                        course_ids: JSON.stringify(selectedCourses),
-                        isStudent: "true",
-                        hours: 0
-                    }); 
-                }
-                )
+                    resp =>  {
+                        const data = {
+                            user_id: resp.id,
+                            courses_ids: JSON.stringify(selectedCourses),
+                            isStudent: "true",
+                            hours: 0
+                        }
+                        post('https://ta-management-47.herokuapp.com/api/user/register', data).then(resp => setRegistered(true))}); 
                
             }
             else {
-                put("https://ta-management-47.herokuapp.com/api/user/edit", userData);
+                const userData = {
+                    id: jsonID,
+                    first_name: firstNameRef.current.value,
+                    last_name: lastNameRef.current.value,
+                    email: emailRef.current.value,
+                    student_id: studentIDRef.current.value,
+                    username: userName,
+                    password: passWordRef.current.value,
+                    role_name: verPerm
+                }
+                put("https://ta-management-47.herokuapp.com/api/user/edit", userData).then(resp => setRegistered(true));
             }
 
-            setRegistered(true);
+            
         }
         // Set courses.
         useEffect(() => {
