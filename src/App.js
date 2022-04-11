@@ -20,16 +20,16 @@ export default function App() {
     <Container>
     <Nav className="me-auto">
       <Nav.Link href="/">Login</Nav.Link>
-      <Nav.Link href="/register">Register</Nav.Link>
-      <Nav.Link href="/logout">Logout</Nav.Link>
-      <Nav.Link href="/dashboard">Dashboard</Nav.Link>
+      <Nav.Link href="/#/register">Register</Nav.Link>
+      <Nav.Link href="/#/logout">Logout</Nav.Link>
+      <Nav.Link href="/#/dashboard">Dashboard</Nav.Link>
     </Nav>
     </Container>
   </Navbar>
       <Routes>
         <Route exact path="/" element={<Login />}></Route>
           <Route path="register" element={<Register2 />
-        } />
+         } />
           <Route path="logout" element={<Logout />} />
           <Route path="dashboard" element = {
           <DashBoard/>} />
