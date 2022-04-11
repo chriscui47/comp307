@@ -16,11 +16,17 @@ function CourseList(props) {
             <ul className={styles.courselist}>
 
         { // If using a course list for purpose of using the performance log, indicate so.
-        (props.rate || props.log) && data.map(course => <Course required key = {course.id} name={course.course_name} users = {course.users} log = {props.log} rate = {props.rate} rateOrLog = {props.trueIfRateFalseIfLog} id={course.id} code = {course.course_num} professor = {course.professor} term = {course.term_month_year} />)}
+        (props.rate || props.log) && data.map(course => <Course reg = {course.registration} required key = {course.id} name={course.course_name} users = {course.users} log = {props.log} rate = {props.rate} rateOrLog = {props.trueIfRateFalseIfLog} id={course.id} code = {course.course_num} professor = {course.professor} term = {course.term_month_year} />)}
 
         { // If using course list for editing TAs
-        props.edit && data.map(course => <Course required key = {course.id} name={course.course_name} users = {course.users} edit = {props.edit} id={course.id} code = {course.course_num} professor = {course.professor}  term = {course.term_month_year} />)}
-     
+        props.edit && data.map(course => <Course reg = {course.registration} required key = {course.id} name={course.course_name} users = {course.users} edit = {props.edit} id={course.id} code = {course.course_num} professor = {course.professor}  term = {course.term_month_year} />)}
+
+        { props.students &&
+        data.map(course => <Course required key = {course.id} reg = {course.registration} name={course.course_name} users = {course.users} students={props.student} id={course.id} code = {course.course_num} professor = {course.professor}  term = {course.term_month_year} />)
+        
+        }
+
+        
         </ul>
         </section> 
   

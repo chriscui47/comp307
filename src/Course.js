@@ -147,6 +147,8 @@ function Course(props) {
         
         </ul>
        </div>}
+
+       
         </div>
         }
 

@@ -30,6 +30,7 @@ function User(props) {
         event.preventDefault();
         const perm = permissions.join(' ');
         const userData = {
+            id: props.u.id,
             first_name: firstNameRef.current.value,
             last_name: lastNameRef.current.value,
             email: emailRef.current.value,
@@ -40,94 +41,10 @@ function User(props) {
         }
         console.log(userData);
         
-        put("https://ta-management-47.herokuapp.com/api/user/edit", userData).then(resp => window.location.reload(false));
-        
-        {/*
-        .then(resp => // Edit user info
-            {
-                if (props.u.role_name.charAt(0)==1) { // Then register in selected courses
-                    const register = setReg.filter(i => !initReg.includes(i));
-                    console.log(register);
-                    var data = {
-                        user_id: props.u.id.toString(),
-                        course_ids: JSON.stringify(register),
-                        isStudent: "true",
-                        hours: 0
-                    }
-                    console.log(data);
-                    post('https://ta-management-47.herokuapp.com/api/user/register', data)
-                    {/*
-                    .then(resp => 
-                    {
-                        const unregister = setUnReg.filter(i => !initUnReg.includes(i));
-                        console.log(unregister);
-                        var data = {
-                            user_id: props.id.toString(),
-                            course_id: JSON.stringify(unregister),
-                            
-                        }
-                        post('https://ta-management-47.herokuapp.com/api/user/unregister', data)
-                    }
-                    ); 
-                }
-                }
-               
-
-                
-            }
-
-
-        );
-        
-            */
-        }
-    }
-
-    /** 
-
-    // Update courses
-    function changeCourse(id) {
-        if (setReg.includes(id)) {
-            setReg = setReg.filter(i => i != id);
-            setUnReg.push(id);
-        }
-        else {
-            setReg.push(id);
-            setUnReg = setUnReg.filter(i => i != id);
-        }
+        put("https://ta-management-47.herokuapp.com/api/user/edit", userData)
+        .then(resp => window.location.reload(false));
         
     }
-
-    function addInit(id, flag) {
-        if (flag) {
-        var arr = [...initReg];
-        arr.push(id);    
-        setInitR(arr);
-        setReg.push(id);
-        }
-        else {
-            var arr = [...initUnReg];
-            arr.push(id);
-            setInitU(arr);
-            setUnReg.push(id);
-        }
-    }
-
-    useEffect(() => {
-        get("https://ta-management-47.herokuapp.com/api/courses").then(response => {setCourses(response); 
-        
-        response
-        .forEach(course => { // If some student in this course is a student and their id matches this users ID, add course ID to initReg
-            course.users.some(user => // Else, add to initUnReg.
-                user.registration.user_id == props.u.id && user.registration.isStudent) ? addInit(course.id, true) : addInit(course.id, false)
-    }); 
-        
-    });
-    console.log(initReg);
-    console.log(initUnReg);
-
-}, []);
-*/
     
 
     return(
@@ -156,21 +73,6 @@ function User(props) {
                     <input type="checkbox" id="sysop" name="sysop" defaultChecked={props.u.role_name.at(8)==1}  onClick={() => getClicked(4)}></input> System Operator<br />
 
 
-                     {/** If student, show all courses, ask to register. Then, update accordingly in registration. 
-                            props.u.role_name.at(0)==1 &&
-                            <div>
-                                
-                                    {courses.map(course =>
-                                    <div>
-                                        {course.course_name} <br />
-                                        <input type="checkbox" key = {course.id} id={course.id} defaultChecked = {initReg.includes(course.id)} onClick = {() => changeCourse(course.id)}></input>
-                                    </div> 
-                                        
-                                    )}
-                                
-
-                                </div>
-                                    */}
                    
                     <button>Submit Changes</button>
            </form>
