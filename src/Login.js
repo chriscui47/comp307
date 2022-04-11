@@ -12,6 +12,7 @@ function Login() {
   const [loggedIn, setLoggedIn] = useState(false);
   return (
     <div className={styles.register}>
+      {localStorage.clear()} {/** Clear local storage upon logging out. */}
       { loggedIn ? (<Navigate push to="/dashboard"/>) : null /** If logged in, redirect to dashboard */}
       <form>
         Username <br />
