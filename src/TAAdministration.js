@@ -7,7 +7,7 @@ function TAAdministration() {
     return(
         <div>
             {
-                (isAdmin() || isSysOp()) ? 
+                (isAdmin() || isSysOp()) ?  // Check permission
                 <div>
                     <div style={{textAlign: "center", width: "100%"}}>
                     <h1>TA Administration</h1>
@@ -17,7 +17,7 @@ function TAAdministration() {
                     <br />
                     <br />
                 </div>
-                : 
+                :  // if permissions not proper, redirect to login page.
                 <LinkLogin />
             }
            

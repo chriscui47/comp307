@@ -9,7 +9,7 @@ import { get } from "./Helper";
 function CourseList(props) {
     const [data, setData] = useState([]);
     useEffect(() => {
-        get(props.url).then(response => {setData(response) });
+        get(props.url).then(response => {setData(response) }); // get courses, with courses varying depending on what was passed to props
       }, []); 
     return (     // CourseTA, CourseLog
         <section className={styles.dashboard}>     
@@ -21,7 +21,7 @@ function CourseList(props) {
         { // If using course list for editing TAs
         props.edit && data.map(course => <Course reg = {course.registration} required key = {course.id} name={course.course_name} users = {course.users} edit = {props.edit} id={course.id} code = {course.course_num} professor = {course.professor}  term = {course.term_month_year} />)}
 
-        { props.students &&
+        { props.students && // Rating a TA
         data.map(course => <Course required key = {course.id} reg = {course.registration} name={course.course_name} users = {course.users} students={props.student} id={course.id} code = {course.course_num} professor = {course.professor}  term = {course.term_month_year} />)
         
         }

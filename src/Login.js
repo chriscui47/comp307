@@ -36,7 +36,6 @@ function Login() {
             }
             else { // Set k-v pairs in local storage to indicate if a user was logged in.
               setLoggedIn(true);
-              console.log(response);
               localStorage.setItem("perm", response.role);
               localStorage.setItem("id", response.student_id);
               localStorage.setItem("DBID", response.id);

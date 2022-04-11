@@ -6,8 +6,6 @@ import TAComments from './TAComments';
 import {get} from "./Helper";
 
 
-
-
 function Course(props) {
     // States to update necessary information.
     const [showTAs, setShowTAs] = useState(false);
@@ -17,7 +15,6 @@ function Course(props) {
     useEffect(() => { // Get all users initially
         get("https://ta-management-47.herokuapp.com/api/user").then(response => {setAllUsers(response)});
         get(`https://ta-management-47.herokuapp.com/api/user/course/?id=${props.id}&isStudent=false`).then(response => {setCurrentTAs(response)});
-        console.log(currentTAs);
         // Convert term_month_year to readable value
         var term="";
         if (props.term) {
@@ -133,12 +130,12 @@ function Course(props) {
         <div className={styles.msg}> Register/unregister TAs for {props.code}. If registering, please indicate hours below.</div>
        <ul>
 
-       { // All TAs registered
+       { // map all TAs registered, denote registered with checked field
         currentTAs.map(user => <TA required key = {user.id} id = {user.id} code = {props.id} fname={user.first_name} lname={user.last_name} 
             hours = {user.registration.hours} checked={true}/>)
         }
         {
-         // All TAs not currently registers   
+         // Map all TAs not currently registered 
          allUsers
          .filter(user => user.role_name.charAt(2)==1 && !currentTAs.some(el => el.id == user.id))
          .map(user => <TA required key = {user.id} id = {user.id} code = {props.id} fname={user.first_name} lname={user.last_name} 

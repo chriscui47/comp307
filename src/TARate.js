@@ -10,7 +10,7 @@ function TARate() {
         <div style={{textAlign: "center", width: "100%"}}>
             <h2>TA Ratings</h2> 
             </div>
-            {/* Display courses for this ID */}
+            {/* Display courses for this ID conditionally, depending on user*/}
 
             {
             (isAdmin() || isSysOp()) &&  // Admin and sysop look at all rates

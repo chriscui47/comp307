@@ -6,25 +6,17 @@ function User(props) {
    
 
     const[showDetails, setShow] = useState(false);
-
+    // References for data
     const firstNameRef = useRef();
     const lastNameRef = useRef();
     const userNameRef = useRef();
     const studentIDRef = useRef();
     const passWordRef = useRef();
     const emailRef = useRef();
-    const [initReg, setInitR] = useState([]);
-    const [initUnReg, setInitU] = useState([]);
-    const [courses, setCourses] = useState([]);
     var permissions = Array.from({length: 5}, (v, i) => props.u.role_name.at(i*2)==1 ? 1 : 0);
-
-    var setReg = [];
-    var setUnReg = [];
-    function getClicked(i) {
+    function getClicked(i) { // Set permissions depending on changes made
         permissions[i] == 0 ? permissions[i]=1 : permissions[i] = 0;
     }
-
-
 
     function submitHandler(event) {
         event.preventDefault();
@@ -41,7 +33,7 @@ function User(props) {
         }
         
         
-        put("https://ta-management-47.herokuapp.com/api/user/edit", userData)
+        put("https://ta-management-47.herokuapp.com/api/user/edit", userData) // send updated data to server
         .then(resp => window.location.reload(false));
         
     }

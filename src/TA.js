@@ -4,9 +4,6 @@ import { useRef } from 'react';
 
 // Class for TA + feature of removing/adding a TA from a course
 
-
-
-
 function TA(props) {
 
     async function post(url, data)  
@@ -74,42 +71,6 @@ function TA(props) {
             </form>
             }
 
-
-            { /** 
-            <input type="checkbox" id={props.id} defaultChecked={registered}
-            
-            
-            onClick={
-                function() {
-                    
-                    if (registered) { // When selecting a course, register or unregister given on current
-                        // value of checkbox.
-                        var data = {
-                            user_id: props.id.toString(),
-                            course_id: props.code.toString(),
-                            
-                        }
-                        registered=false;
-                        post('https://ta-management-47.herokuapp.com/api/user/unregister', data);
-                    }
-                    else {
-
-                        var data = {
-                            user_id: props.id.toString(),
-                            course_ids: JSON.stringify([props.code]),
-                            isStudent: "false",
-                            hours: 0
-                        }
-                        registered=true;
-                        post('https://ta-management-47.herokuapp.com/api/user/register', data);   
-                    }
-                    
-                }
-                
-            }
-            ></input>  
-
-        */}
             </div>
         
         </div>

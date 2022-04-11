@@ -5,7 +5,7 @@ import { propTypes } from 'react-bootstrap/esm/Image';
 import User from "./User";
 import { get } from "./Helper";
 
-function EditUser() {
+function EditUser() { 
 
     const [users, setAllUsers] = useState([]);
     useEffect(() => {
@@ -19,11 +19,9 @@ function EditUser() {
             
                 <ul style={{listStyleType: "none"}}>
                     {
-                users.map(
-                    user =>
-                    
-                    <User required key={user.id} u={user}/>
-                    
+                users.map( // Mapping all users to user component
+                    user =>       
+                    <User required key={user.id} u={user}/>       
                 )
                 }
             

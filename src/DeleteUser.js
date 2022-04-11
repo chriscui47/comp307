@@ -20,7 +20,7 @@ function DeleteUser() {
   }
 
 
-  function submitHandler(e) {
+  function submitHandler(e) { // On submit, delete user
       e.preventDefault();
       const data= {
           id: userRef.current.value
@@ -28,7 +28,7 @@ function DeleteUser() {
       del('https://ta-management-47.herokuapp.com/api/user/delete', data).then(resp => window.location.reload(false));
   }
 
-    const [allUsers, setAllUsers] = useState([]);
+    const [allUsers, setAllUsers] = useState([]); // Get all users
     useEffect(() => {
         get("https://ta-management-47.herokuapp.com/api/user").then(response => setAllUsers(response));     
     }, []); 

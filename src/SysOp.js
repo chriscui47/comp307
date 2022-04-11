@@ -8,7 +8,7 @@ import FileUpload from "./FileUpload";
 import DeleteUser from "./DeleteUser";
 import EditUser from "./EditUser";
 
-function SysOp() {
+function SysOp() { // SysOp component with different features added
     const [showRegister, setRegister] = useState(false);
     const [showDelete, setDelete] = useState(false);
     const [showEdit, setShowEdit] = useState(false);

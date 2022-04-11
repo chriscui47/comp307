@@ -68,29 +68,30 @@ function Register() {
                 username: userNameRef.current.value
             }
 
-            post("https://ta-management-47.herokuapp.com/api/user/isitadded", data)
+            post("https://ta-management-47.herokuapp.com/api/user/isitadded", data) // Check if user added
             .then(resp => {
-                if (!resp) {
+                if (!resp) { // If not added, simply return.
                     return;
                 }
-                else {
+                else { // Set verified to trua, and set necessary fields
                     setFname(resp.first_name);
                     setLname(resp.last_name);
                     setStudentID(resp.student_id);
                     setEmail(resp.email);
-                    setVerPerm(resp.role_name);
-                    setVerified(true);      
+                    setVerPerm(resp.role_name);    
                     setjsonID(resp.id);  
+                    setVerified(true);  
                 }
+                
             })
 
            
         }
 
-        function completeRegistration(e) {
+        function completeRegistration(e) { // Handle completing registration
             e.preventDefault();
 
-            const userData = {
+            const userData = { // Get user info
                 first_name: firstNameRef.current.value,
                 last_name: lastNameRef.current.value,
                 email: emailRef.current.value,
@@ -100,7 +101,7 @@ function Register() {
                 role_name: verPerm
             }
 
-            if (isStudent) {
+            if (isStudent) { // If student
 
                 post('https://ta-management-47.herokuapp.com/api/user/create', userData).then( // Create user
                     resp =>  {
@@ -109,11 +110,11 @@ function Register() {
                             courses_ids: JSON.stringify(selectedCourses),
                             isStudent: "true",
                             hours: 0
-                        }
+                        } // Register user in courses
                         post('https://ta-management-47.herokuapp.com/api/user/register', data).then(resp => setRegistered(true))}); 
                
             }
-            else {
+            else { // If not student
                 const userData = {
                     id: jsonID,
                     first_name: firstNameRef.current.value,
@@ -124,7 +125,7 @@ function Register() {
                     password: passWordRef.current.value,
                     role_name: verPerm
                 }
-                put("https://ta-management-47.herokuapp.com/api/user/edit", userData).then(resp => setRegistered(true));
+                put("https://ta-management-47.herokuapp.com/api/user/edit", userData).then(resp => setRegistered(true)); // Edit information provided
             }
 
             
@@ -135,7 +136,7 @@ function Register() {
           }, []); 
     return (
         
-        registered ? (<Navigate push to="/"/>) :
+        registered ? (<Navigate push to="/"/>) : // Once registered, go back to login page.
         <div style={{margin: 10}}>
             {localStorage.clear()} {/** Clear local storage upon logging out. */}
             {/* In stage one*/ }

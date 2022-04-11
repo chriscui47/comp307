@@ -48,7 +48,7 @@ function CourseMaker() {
      ); 
   }
 
-    const [allUsers, setAllUsers] = useState([]);
+    const [allUsers, setAllUsers] = useState([]); // Set users
     useEffect(() => {
         get("https://ta-management-47.herokuapp.com/api/user").then(response => setAllUsers(response));     
     }, []); 

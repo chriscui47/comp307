@@ -24,7 +24,6 @@ function Register() {
   }
   function submitHandler(event) {
     event.preventDefault();
-    console.log(permissions);
     const enteredUserName = userNameRef.current.value;
     const enteredfName = firstNameRef.current.value;
     const enteredlName = lastNameRef.current.value;

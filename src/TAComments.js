@@ -10,20 +10,20 @@ function TAComments(props) {
     const [comments, setComments] = useState([]);
     const [textarea, setTextArea] = useState("");
     const rateRef = useRef();
-    useEffect(() => {
+    useEffect(() => { // Get comments by this course & this TA
         get(`https://ta-management-47.herokuapp.com/api/course/user/comment?course_id=${props.course_id}&user_id=${props.id}`).then(response => {setComments(response)} );
       }, []); 
     
-      const handleChange = (event) => {
+      const handleChange = (event) => { // Set comment contents on a change.
         setTextArea(event.target.value)
       }
 
       function handleSubmit(e) { // Handle submitting a form.
         e.preventDefault();
-          if (textarea.length == 0) {
+          if (textarea.length == 0) { // if no comment
               return;
           }
-        const commentData = {
+        const commentData = { // set data for request
             course_id: props.course_id.toString(),
             user_id: props.id.toString(),
             comment: textarea,

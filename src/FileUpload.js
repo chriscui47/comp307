@@ -33,15 +33,14 @@ const [file, setFile] = useState();
         courses: array
     }
 
-    console.log(JSON.stringify(body));
-    post("https://ta-management-47.herokuapp.com/api/course/create/csv", body);
+    post("https://ta-management-47.herokuapp.com/api/course/create/csv", body); // Send properly created courses to server
     
   };
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
 
-    if (file) {
+    if (file) { // Read file
       fileReader.onload = function (event) {
         const text = event.target.result;
         csvFileToArray(text);

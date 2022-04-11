@@ -1,6 +1,6 @@
 // Helper methods for a get, post, or put request.
 
-
+// Get request
 export const get = async (url) =>
 {
     
@@ -28,6 +28,7 @@ export const post = async (url, data) =>
     }
   }
 
+  // Put request
   export const put = async (url, data) =>
   {
     let res = await fetch(url, {method: 'PUT', body: JSON.stringify(data), 
