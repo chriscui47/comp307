@@ -15,7 +15,7 @@ function SysOp() { // SysOp component with different features added
     return (
         
         <div>
-            {isSysOp() ? 
+            {isSysOp() ? // Conditionally render given is sysop
                 <div className={styles.screen}>
                 <div className={styles.child}>
                <h2>Manual Import Prof + Course</h2>
@@ -58,17 +58,9 @@ function SysOp() { // SysOp component with different features added
                     {showEdit &&
                         <div className={styles.reg}>
                             <EditUser />
-
                         </div>
                     }
-
                 </div>
-
-                
-                
-
-
-
                 </div>
             : <LinkLogin/>}
         </div>

@@ -7,7 +7,7 @@ function TAAdministration() {
     return(
         <div>
             {
-                (isAdmin() || isSysOp()) ?  // Check permission
+                (isAdmin() || isSysOp()) ?  // Check permission, if valid, show courses w/ edit feature
                 <div>
                     <div style={{textAlign: "center", width: "100%"}}>
                     <h1>TA Administration</h1>

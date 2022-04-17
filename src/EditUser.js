@@ -1,15 +1,13 @@
-import { useRef } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { propTypes } from 'react-bootstrap/esm/Image';
 import User from "./User";
 import { get } from "./Helper";
-
+// Component to edit user for sysop
 function EditUser() { 
 
     const [users, setAllUsers] = useState([]);
     useEffect(() => {
-        get("https://ta-management-47.herokuapp.com/api/user").then(response => {setAllUsers(response); console.log(response)});     
+        get("https://ta-management-47.herokuapp.com/api/user").then(response => setAllUsers(response));     
     
     }, []); 
 

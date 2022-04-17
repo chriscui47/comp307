@@ -1,10 +1,9 @@
 import { useRef } from 'react';
-import { useEffect } from 'react';
 import { useState } from 'react';
-import { put, get, post } from "./Helper";
+import { put } from "./Helper";
+// Component representing a user that can be edited
 function User(props) {
    
-
     const[showDetails, setShow] = useState(false);
     // References for data
     const firstNameRef = useRef();

@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import { useEffect } from 'react';
 import { get } from "./Helper";
 
-
+// Component to make a course w/ prof
 function CourseMaker() {
 
   // References to store information about a course.
@@ -15,7 +15,7 @@ function CourseMaker() {
   const monthRef = useRef();
   const yearRef = useRef();
   const profRef = useRef();
-  // Function to handle submitting a course.
+  // Function to handle adding new course + prof
   function submitHandler(event) {
     event.preventDefault();
 
@@ -44,7 +44,7 @@ function CourseMaker() {
      }
 
    }).then(
-     resp => window.location.reload(false)
+     resp => window.location.reload(false) // Reload window on complete
      ); 
   }
 

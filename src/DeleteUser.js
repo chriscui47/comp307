@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import { get } from "./Helper";
-
+// Component to delete a user.
 function DeleteUser() {
 
     const userRef = useRef();

@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import TAComments from './TAComments';
 import {get} from "./Helper";
 
-
+// Component representing generic course, use props to specify exactly what feature for a course should be shown
 function Course(props) {
     // States to update necessary information.
     const [showTAs, setShowTAs] = useState(false);
@@ -29,7 +29,7 @@ function Course(props) {
             else if (props.term.charAt(0) == "3") {
                 term="Summer";
             }
-            setCourseTerm(term.concat(" ", props.term.substr(-4)));
+            setCourseTerm(term.concat(" ", props.term.substr(-4))); // Get year from last 4 strings 
         }
         
         
@@ -58,7 +58,7 @@ function Course(props) {
             function() {
                 setShowTAs(!showTAs);
                 // Update users in class here.
-                get(`https://ta-management-47.herokuapp.com/api/user/course/?id=${props.id}&isStudent=false`).then(response => {setCurrentTAs(response); console.log(response)});
+                get(`https://ta-management-47.herokuapp.com/api/user/course/?id=${props.id}&isStudent=false`).then(response => setCurrentTAs(response));
 
         }}>Edit TAs</button> 
         
@@ -103,8 +103,9 @@ function Course(props) {
        </div>}      
         </div>   
         }
-
-        {props.rate && <div>
+        
+        {props.rate && // Mapping for rating
+        <div> 
             {
                 showTAs && <div className={styles.dropdown}>
                     <ul>

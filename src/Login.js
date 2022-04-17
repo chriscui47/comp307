@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import { Navigate } from "react-router-dom";
 import { post } from "./Helper";
 
-
+// Component to log a user in
 function Login() {
   const userNameRef= useRef();
   const passWordRef = useRef();

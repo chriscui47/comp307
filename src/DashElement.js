@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import styles from './DashElement.module.css';
-import { Routes, Route, Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function DashElement(props) {
     return ( // A generic DashElement, populate with prop.values to get different dash elements.

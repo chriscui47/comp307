@@ -1,9 +1,8 @@
 
 import React, { useState } from 'react';
-import { useRef } from 'react';
 import { post } from "./Helper";
 
-
+// Component to upload file from a CSV
 function FileUpload() {
 
 const [file, setFile] = useState();

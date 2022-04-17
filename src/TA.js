@@ -2,23 +2,11 @@ import styles from "./TA.module.css";
 import { post } from "./Helper";
 import { useRef } from 'react';
 
-// Class for TA + feature of removing/adding a TA from a course
+// Component for TA + feature of removing/adding a TA from a course
 
 function TA(props) {
-
-    async function post(url, data)  
-    {       
-        let res = await fetch(url, {method: 'POST', body: JSON.stringify(data), 
-        headers: {
-        'Content-Type': 'application/json' // Denote we are sending JSON data.
-        }});  
-       
-  }
-
-
-    var registered = props.checked;
     const hoursRef = useRef();
-    function unRegisterHandler(e) {
+    function unRegisterHandler(e) { // Handle unregistering in a course
         e.preventDefault();
         var data = {
             user_id: props.id.toString(),
@@ -28,7 +16,7 @@ function TA(props) {
         post('https://ta-management-47.herokuapp.com/api/user/unregister', data).then(resp => window.location.reload(false));
     }
 
-    function registerHandler(e) {
+    function registerHandler(e) { // Handle registering in a course
         e.preventDefault();
         var data = {
             user_id: props.id.toString(),

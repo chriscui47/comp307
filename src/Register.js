@@ -3,6 +3,7 @@ import styles from './Register.module.css';
 import { Navigate } from "react-router-dom";
 import React, { useState } from 'react';
 import { useRef } from 'react';
+// Registering a user via sysop feature
 function Register() {
   const [registered, setRegistered] = useState(false);
   const userNameRef= useRef();
@@ -35,7 +36,7 @@ function Register() {
       first_name: enteredfName,
       last_name: enteredlName,
       username: enteredUserName,
-      password: "test",
+      password: "uninitialized",
       student_id: enteredStudentID,
       role_name: enteredUserType,
       email: enteredEmailRef
