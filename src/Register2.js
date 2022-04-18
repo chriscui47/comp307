@@ -6,6 +6,16 @@ import { useEffect } from 'react';
 import { get, post, put } from './Helper';
 
 
+async function post1(url, data) 
+{
+    let res = await fetch(url, {method: 'POST', body: JSON.stringify(data), 
+    headers: {
+      'Content-Type': 'application/json' // Denote we are sending JSON data.
+    }});  
+    
+    
+  }
+
 function Register() {
         var permissions = Array.from({length: 5}, (v, i) => 0); // Set all to zero.
         // Checking what stage of registration depending on how user has interacted with page.
@@ -103,15 +113,15 @@ function Register() {
 
             if (isStudent) { // If student
 
-                post('https://ta-management-47.herokuapp.com/api/user/create', userData).then( // Create user
+                post("https://ta-management-47.herokuapp.com/api/user/create", userData).then( // Create user
                     resp =>  {
                         const data = {
-                            user_id: resp.id,
-                            courses_ids: JSON.stringify(selectedCourses),
+                            user_id: resp.id.toString(),
+                            course_ids: JSON.stringify(selectedCourses),
                             isStudent: "true",
-                            hours: 0
+                            hours: "0"
                         } // Register user in courses
-                        post('https://ta-management-47.herokuapp.com/api/user/register', data).then(resp => setRegistered(true))}); 
+                        post1("https://ta-management-47.herokuapp.com/api/user/register", data).then(resp =>  window.location.reload(false))}); 
                
             }
             else { // If not student

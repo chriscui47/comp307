@@ -3,6 +3,16 @@ import { post } from "./Helper";
 import { useRef } from 'react';
 
 // Component for TA + feature of removing/adding a TA from a course
+async function post1(url, data) 
+{
+    let res = await fetch(url, {method: 'POST', body: JSON.stringify(data), 
+    headers: {
+      'Content-Type': 'application/json' // Denote we are sending JSON data.
+    }});  
+    
+    
+  }
+
 
 function TA(props) {
     const hoursRef = useRef();
@@ -24,7 +34,7 @@ function TA(props) {
             isStudent: "false",
             hours: hoursRef.current.value
         }
-        post('https://ta-management-47.herokuapp.com/api/user/register', data).then(resp => window.location.reload(false));   
+        post1('https://ta-management-47.herokuapp.com/api/user/register', data).then(resp => window.location.reload(false));   
 
     }
 

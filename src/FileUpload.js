@@ -32,7 +32,7 @@ const [file, setFile] = useState();
         courses: array
     }
 
-    post("https://ta-management-47.herokuapp.com/api/course/create/csv", body); // Send properly created courses to server
+    post("https://ta-management-47.herokuapp.com/api/course/create/csv", body).then(resp => window.location.reload(false)); // Send properly created courses to server
     
   };
 
@@ -102,7 +102,11 @@ const [file, setFile] = useState();
             Ensure that the CSV file matches the headers below: < br/>
            <b>term_month_year,course_num,course_name,instructor_assigned_name </b> <br />
             where instructor_assigned_name should be the username of the prof. <br />
-            If the username does not match a valid username in the system, no course will be added.
+            If the username does not match a valid username in the system, no course will be added. 
+            <br /> 
+            Example of csv row: 1_10_2022,202,Introduction to Programming,professor_username
+            <br /> 
+            Note further than 1 corresponds to a fall term, 2 corresponds to winter, 3 corresponds to summer.
             <br /> <br />
             </div>
         </div>
