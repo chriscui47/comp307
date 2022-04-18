@@ -12,7 +12,7 @@ function DashBoard() {
         <div className={styles.screen}>
         <div className={styles.box}>
             <div className={styles.board}>
-            {(isTA() || isProf() || isAdmin() || isSysOp()) && <DashElement title="TA Management" url="/manage"/>}
+            {(isProf() || isAdmin() || isSysOp()) && <DashElement title="TA Management" url="/manage"/>}
             {(isAdmin() || isSysOp()) && <DashElement title="TA Administration" url="/admin"/>}
             {isSysOp() && <DashElement title="Sysop Tasks" url="/sysop"/>}
             {isUser() && <DashElement title="Rate a TA" url="/rate"/>}

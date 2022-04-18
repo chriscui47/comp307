@@ -24,9 +24,7 @@ function TARate() {
             {
                 (!isProf() && !isAdmin() && !isSysOp()) && // other users only look at their courses
                 <CourseList url={`https://ta-management-47.herokuapp.com/api/courses/user/?id=${localStorage.getItem("DBID")}`} rate={true} rateIfTrueLogIfFalse={true} />
-            }
-            
-            
+            }    
         </div>
         :
         <LinkLogin />
