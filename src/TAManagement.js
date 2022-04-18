@@ -9,7 +9,7 @@ function TAManagement() {
                 (isProf() || isAdmin() || isSysOp()) ? // Conditionally render different courses given the type of user
                 
                     
-                    isSysOp() ? (<div>
+                    (isSysOp() || isAdmin()) ? (<div>
                         <div style={{textAlign: "center", width: "100%"}}>
                         <h1>TA Management</h1>
                         </div>
